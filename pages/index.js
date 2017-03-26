@@ -1,2 +1,8 @@
 import React from 'react'
-export default () => <div>Hello nice world!</div>
+import Home from '../features/home'
+
+export default () => (
+  <div>
+    <Home/>
+  </div>
+)
