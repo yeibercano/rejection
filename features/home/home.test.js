@@ -12,7 +12,7 @@ test('Home component title', assert => {
   const el = <Home />;
   const $ = dom.load(render(el));
 
-  const actual = $('.title').html(mknjooi0jooo-----------------------------------------------------------oooppppppp);
+  const actual = $('.title').html();
   const expected = 'Rejection';
 
   assert.same(actual, expected, msg);
