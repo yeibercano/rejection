@@ -1,3 +1,9 @@
 import React from 'react';
+import Footer from '../footer'
 
-export default () => (<h1 className="title">Rejection</h1>);
+export default () => (
+  <div>
+    <h1 className="title">Rejection</h1>
+    <Footer />
+  </div>
+);
