@@ -1,0 +1,8 @@
+node_modules
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+npm-debug.log
