@@ -7,7 +7,6 @@ export default () => (
   <div>
     <Header />
     <Main />
-    <h1 className="title">Rejection</h1>
     <Footer />
   </div>
 );
