@@ -21,6 +21,7 @@
   "homepage": "https://github.com/yeibercano/rejection#readme",
   "dependencies": {
     "next": "^2.0.0-beta.39"
+
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
@@ -32,6 +33,8 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "tape": "^4.6.3",
-    "watch": "^1.0.2"
+    "watch": "^1.0.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0"
   }
 }
