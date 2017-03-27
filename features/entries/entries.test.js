@@ -8,13 +8,18 @@ import Entries from './index.js';
 const render = reactDom.renderToStaticMarkup;
 
 test('Entries component', assert => {
-  const msg = 'should render i m not sure yet';
   const el = <Entries />;
   const $ = dom.load(render(el));
 
-  const actual = $('.score').html();
-  const expected = actual >= 0 ? actual : false;
+  const msg = 'should render 2 input';
+  const actual = $('input').length;
+  const expected = 2;
+
+  const msgButtons = 'should render 2 buttons';
+  const actualButtons = $('button').length;
+  const expectedButtons = 2;
 
   assert.same(actual, expected, msg);
+  assert.same(actualButtons, expectedButtons, msgButtons);
   assert.end();
 });
