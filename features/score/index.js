@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { currentScore } from './actions';
 
-class Entries extends Component {
+class Score extends Component {
+  componentDidMount() {
+    this.props.currentScore();
+  }
+
   render() {
     const { score } = this.props;
 
@@ -18,4 +23,4 @@ class Entries extends Component {
 
 const mapStateToProps = (state) => ({ score: state.score.score });
 
-export default connect(mapStateToProps, null)(Entries);
+export default connect(mapStateToProps, { currentScore })(Score);
