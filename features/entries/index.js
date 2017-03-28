@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { accept, reject } from './actions'
+import { connect } from 'react-redux';
+import { accept, reject } from './actions';
 
 class Entries extends Component {
-  handleClickAccept() {
+  handleClickAccept(e) {
+    e.preventDefault();
     this.props.accept();
   }
 
-  handleClickReject() {
+  handleClickReject(e) {
+    e.preventDefault();
     this.props.reject();
   }
 
@@ -25,8 +27,8 @@ class Entries extends Component {
             <input type="text" placeholder="name"className="askee"/>
             <input type="text" placeholder="question" className="ask"/>
             <div className="buttons">
-              <button className="accept" onClick={()=> this.handleClickAccept()}>accept</button>
-              <button className="reject" onClick={()=> this.handleClickReject()}>reject</button>
+              <button className="accept" onClick={(e)=> this.handleClickAccept(e)}>accept</button>
+              <button className="reject" onClick={(e)=> this.handleClickReject(e)}>reject</button>
             </div>
           </form>
       </section>
