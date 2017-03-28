@@ -3,13 +3,18 @@ export function score (state = { score: 0 }, action) {
 	  case 'ACCEPT':
 	  	return {
 	  		...state,
-	  		score: state.score + action.payload
+	  		score:  action.payload
 	  	}
       case 'REJECT':
   	  	return {
   	  		...state,
-  	  		score: state.score + action.payload
+  	  		score: action.payload
   	  	}
+			case 'CURRENT_SCORE':
+  	  	return {
+  	  		...state,
+					score: action.payload || state.score
+  	  }
 	}
 	return state
 }
