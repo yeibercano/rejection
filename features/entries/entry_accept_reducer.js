@@ -1,9 +1,9 @@
-export function accept (state = { entry: null }, action) {
+export function accept (state = { entry: 0 }, action) {
 	switch (action.type) {
 	  case 'ACCEPT':
 	  	return {
 	  		...state,
-	  		entry: state.entry + action.payload
+	  		entry: action.payload
 	  	}
 	}
 	return state
