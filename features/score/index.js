@@ -8,7 +8,11 @@ class Score extends Component {
   }
 
   render() {
-    const { score } = this.props;
+    let { score } = this.props;
+
+    if (!score) {
+      score = 'loading...';
+    }
 
     return (
         <aside>
