@@ -10,7 +10,9 @@ class Score extends Component {
   render() {
     let { score } = this.props;
 
-    if (!score) {
+    if (score === 0) {
+      score = score;
+    } else if (!score) {
       score = 'loading...';
     }
 
@@ -25,6 +27,6 @@ class Score extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ score: state.score.score });
+const mapStateToProps = (state) => ({ score: state.score.currentScore });
 
 export default connect(mapStateToProps, { currentScore })(Score);
