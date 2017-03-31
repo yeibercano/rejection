@@ -1,21 +1,23 @@
-export const accept = () => {
-  const setScore = localStorage.getItem('score') ?
-                   localStorage.setItem('score', Number(localStorage.getItem('score')) + 1) :
-                   localStorage.setItem('score', 1);
-  const score = localStorage.getItem('score');
-
+export const accept = (entry) => {
   return dispatch => {
-    dispatch({ type: 'ACCEPT', payload: Number(score) })
+    const getScore = Number(localStorage.getItem('score'));
+    const currentScore = getScore + 1;
+    const currentEntry = {...entry, timestamp: new Date().getTime()}
+
+    dispatch({ type: 'ACCEPT', payload: currentEntry })
+    dispatch({ type: 'UPDATE_SCORE', payload: currentScore })
+    localStorage.setItem('score', currentScore);
   }
 }
 
-export const reject = () => {
-  const setScore = localStorage.getItem('score') ?
-                   localStorage.setItem('score', Number(localStorage.getItem('score')) + 10) :
-                   localStorage.setItem('score', 10);
-  const score = localStorage.getItem('score');
-
+export const reject = (entry) => {
   return dispatch => {
-    dispatch({ type: 'REJECT', payload: score })
+    const getScore = Number(localStorage.getItem('score'));
+    const currentScore = getScore + 10;
+    const currentEntry = {...entry, timestamp: new Date().getTime()}
+
+    dispatch({ type: 'REJECT', payload: currentEntry })
+    dispatch({ type: 'UPDATE_SCORE', payload: currentScore })
+    localStorage.setItem('score', currentScore);
   }
 }
