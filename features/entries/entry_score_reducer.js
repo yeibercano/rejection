@@ -2,7 +2,8 @@ export function score (state = { currentScore:0 }, action) {
 	switch (action.type) {
 			case 'CURRENT_SCORE':
   	  	return {
-  	  		...state
+  	  		...state,
+					currentScore: state.currentScore + action.payload
   	  }
 			case 'ACCEPT':
 				return {
