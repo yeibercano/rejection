@@ -3,7 +3,7 @@ export function score (state = { currentScore:null }, action) {
 			case 'CURRENT_SCORE':
   	  	return {
   	  		...state,
-					currentScore: 0
+					currentScore: action.payload || 0
   	  }
 			case 'UPDATE_SCORE':
   	  	return {
