@@ -1,14 +1,18 @@
 import React from 'react';
 
-export default () => (
-  <div>
-    <ul>
-      <li>
-        <a className="links" href="https://github.com/yeibercano/rejection">github</a>
-      </li>
-      <li>
-        <a className="links" href="#">demo</a>
-      </li>
-    </ul>
-  </div>
-);
+export default () => {
+  const date = new Date().getFullYear();
+
+  return (
+    <div>
+      <ul>
+        <li>
+          <a className="links" href="https://github.com/yeibercano/rejection">github</a>
+        </li>
+        <li>
+          {date}
+        </li>
+      </ul>
+    </div>
+  );
+}
