@@ -3,10 +3,7 @@ export function accept (state = { entries: [], score: 0 }, action) {
 	  case 'ACCEPT':
 	  	return {
 	  		...state,
-	  		entries: [
-					...state.entries,
-					action.payload
-				],
+	  		entries: action.payload,
 				score: state.score + 1
 	  	}
 	}
