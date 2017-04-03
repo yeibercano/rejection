@@ -8,7 +8,7 @@ export const checkSetKeys = function (defaults) {
   for(var key in defaults) {
     if (Array.isArray(defaults[key])) {
       if (localStorage.getItem(key) === null ) {
-        localStorage.setItem(key, []);
+        localStorage.setItem(key, JSON.stringify(defaults[key]));
       }
     } else {
       if (localStorage.getItem(key) === null) {
