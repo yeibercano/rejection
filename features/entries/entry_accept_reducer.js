@@ -1,9 +1,10 @@
 export function accept (state = { entries: [], score: 0 }, action) {
-	switch (action.type) {
+	const { type, payload } = action;
+	switch (type) {
 	  case 'ACCEPT':
 	  	return {
 	  		...state,
-	  		entries: action.payload,
+	  		entries: payload,
 				score: state.score + 1
 	  	}
 	}

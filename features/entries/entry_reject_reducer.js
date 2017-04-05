@@ -1,11 +1,12 @@
 export function reject (state = { entries: [], score: 0 }, action) {
-	switch (action.type) {
+	const { type, payload } = action;
+	switch (type) {
 	  case 'REJECT':
 	  	return {
 	  		...state,
 				entries: [
 					...state.entries,
-					action.payload
+					payload
 				],
 				score: state.score + 10
 	  	}
