@@ -2,7 +2,7 @@ import { Field } from 'redux-form';
 
 export const Entry = ({handleSubmit}) => {
     return (
-      <form className="entryForm" onSubmit={ handleSubmit}>
+      <form className="entryForm" onSubmit={handleSubmit}>
         <h3 className="subTitle">Entry</h3>
         <div>
           <label htmlFor="askee">Name</label>
