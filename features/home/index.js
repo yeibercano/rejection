@@ -27,6 +27,9 @@ export default () => (
       li {
         list-style-type: none;
       }
+      .brandingColor {
+        background-color: tomato;
+      }
     `}
     </style>
   </div>
