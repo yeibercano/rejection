@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default () => (
-  <header>
+  <header className="centerContainer">
     <ul>
       <li>
         <a className="brand" href="#">Brand</a>
