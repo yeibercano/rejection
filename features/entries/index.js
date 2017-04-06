@@ -26,6 +26,12 @@ export class Entries extends Component {
             How long can you make your rejection streak last?
           </p>
           <Entry handleSubmit={handleSubmit((e) => this.handleEntrySubmit(e)) }/>
+          <style jsx>{`
+            section {
+              width: 65%;
+            }
+          `}
+          </style>
       </section>
     );
   }

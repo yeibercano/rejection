@@ -2,10 +2,14 @@
 const Score = ({score}) => {
   return (
       <aside>
-        <article>
-          <h1>SCORE</h1>
-          <span className="score">{score}</span>
-        </article>
+          <h1>Score</h1>
+          <p className="score">{score}</p>
+          <style jsx >{`
+            aside {
+              width: 25%;
+            }
+          `}
+          </style>
       </aside>
     );
 }

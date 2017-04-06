@@ -20,10 +20,16 @@ class Main extends Component {
     }
 
     return (
-      <div>
+      <main className="columnContainer centerContainer">
         <Score score={score}/>
         <Entries />
-      </div>
+        <style jsx >{`
+          .columnContainer {
+            display: flex;
+          }
+        `}
+        </style>
+      </main>
     );
   }
 }
