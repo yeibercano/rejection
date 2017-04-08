@@ -39,7 +39,6 @@ test('Entries component', nest => {
   nest.test('paragraph', assert => {
     const el = <Provider store={store}><Entries /></Provider>;
     const $ = dom.load(render(el));
-    const title = 'Rejection';
 
     const msg = 'should render a paragraph with content';
     const output = $('p.intro').children().length;
