@@ -37,6 +37,6 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ score: state.score.currentScore });
+const mapStateToProps = (state) => ({ score: state.entries.currentScore });
 
 export default connect(mapStateToProps, { currentScore })(Main);
