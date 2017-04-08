@@ -15,8 +15,8 @@ export const Entry = ({handleSubmit}) => {
         <div>
           <label>Response</label>
           <div>
-            <label><Field name="status" component="input" type="radio" value="accept" required/> accept</label>
-            <label><Field name="status" component="input" type="radio" value="reject" required/> reject</label>
+            <label><Field name="status" component="input" type="radio" value='ACCEPT' required/> accept</label>
+            <label><Field name="status" component="input" type="radio" value='REJECT' required/> reject</label>
           </div>
         </div>
         <button type="submit">Submit</button>
