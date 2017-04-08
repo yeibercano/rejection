@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { accept, reject } from './actions';
+import { accept, reject } from './entries_reducer.js';
 import { Field, reduxForm, reset } from 'redux-form';
 import Entry from './entry/index';
 
 export class Entries extends Component {
   handleEntrySubmit(entry) {
-    if (entry.status === "accept") {
+    if (entry.status === 'ACCEPT') {
       this.props.accept(entry);
     } else {
       this.props.reject(entry);
