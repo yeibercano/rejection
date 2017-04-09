@@ -52,6 +52,22 @@ test('Entries Component', nest => {
 
 });
 
+//CONST
+const  ACCEPT = 'ACCEPT', REJECT = 'REJECT', CURRENT_SCORE = 'CURRENT_SCORE';
+const actions = [
+  {
+    type: ACCEPT,
+    payload: { hola: 'hola' }
+  },
+  {
+    type: REJECT,
+    payload: { ciao: 'ciao' }
+  },
+  {
+    type: CURRENT_SCORE
+  }
+];
+
 //REDUCER
 const createState = ({
   entries = [],
@@ -71,4 +87,63 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
+  nest.test('current score', assert => {
+    const msg = 'should return currentScore';
+    const output = entries(undefined, actions[2]);
+    
+    const actual = output.currentScore;
+    const expected = 0;
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('accept ask', assert => {
+    const msg = 'should add an accepted entry';
+    const output = entries(
+      undefined,
+      actions[0]
+    );
+
+    const actual = output.entries.length;
+    const expected = 1;
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('update currentScore by 1', assert => {
+    const msg = 'should add 1 to currentScore';
+    const output = entries(undefined, actions[0]);
+
+    const previousState = entries();
+    const actual = output.currentScore;
+    const expected = previousState.currentScore + 1;
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('reject ask', assert => {
+    const msg = 'should add an rejected entry';
+    const output = entries(undefined, actions[1]);
+
+    const actual = output.entries.length;
+    const expected = 1;
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('update currentScore by 10', assert => {
+    const msg = 'should add 10 to currentScore';
+    const output = entries(undefined, actions[1]);
+
+    const previousState = entries();
+    const actual = output.currentScore;
+    const expected = previousState.currentScore + 10;
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
 });
