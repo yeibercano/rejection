@@ -4,7 +4,7 @@ import test from 'tape';
 import dom from 'cheerio';
 
 import Entries from './index.js';
-import {entries} from './entries_reducer.js';
+import { entries } from './entries_reducer.js';
 import { Provider } from 'react-redux';
 import { store } from '../../utilities'
 
@@ -71,4 +71,15 @@ test('Entries reducer', nest => {
     assert.end();
   });
 
+  nest.test('default state', assert => {
+    const msg = 'should render default state';
+    const actual = entries();
+    const expected = createState();
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
 });
+
+//ACTIONS
