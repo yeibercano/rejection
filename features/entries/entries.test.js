@@ -4,13 +4,13 @@ import test from 'tape';
 import dom from 'cheerio';
 
 import Entries from './index.js';
+import {entries} from './entries_reducer.js';
 import { Provider } from 'react-redux';
 import { store } from '../../utilities'
 
 const render = reactDom.renderToStaticMarkup;
 
 test('Entries component', nest => {
-
   nest.test('inputs', assert => {
     const el = <Provider store={store}><Entries /></Provider>;
     const $ = dom.load(render(el));
@@ -45,6 +45,27 @@ test('Entries component', nest => {
 
     const actual = output > 0;
     const expected = true;
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
+});
+
+//REDUCER
+const createState = ({
+  entries = [],
+  currentScore = null
+} = {}) => ({
+  entries,
+  currentScore
+});
+
+test('Entries reducer', nest => {
+  nest.test('default state', assert => {
+    const msg = 'should render default state';
+    const actual = entries();
+    const expected = createState();
 
     assert.same(actual, expected, msg);
     assert.end();
