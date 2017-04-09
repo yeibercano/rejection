@@ -10,7 +10,7 @@ import { store } from '../../utilities'
 
 const render = reactDom.renderToStaticMarkup;
 
-test('Entries component', nest => {
+test('Entries Component', nest => {
   nest.test('inputs', assert => {
     const el = <Provider store={store}><Entries /></Provider>;
     const $ = dom.load(render(el));
@@ -61,16 +61,7 @@ const createState = ({
   currentScore
 });
 
-test('Entries reducer', nest => {
-  nest.test('default state', assert => {
-    const msg = 'should render default state';
-    const actual = entries();
-    const expected = createState();
-
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
-
+test('Entries Reducer', nest => {
   nest.test('default state', assert => {
     const msg = 'should render default state';
     const actual = entries();
@@ -81,5 +72,3 @@ test('Entries reducer', nest => {
   });
 
 });
-
-//ACTIONS
