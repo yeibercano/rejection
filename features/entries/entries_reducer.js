@@ -48,24 +48,24 @@ export function entries (state = defaultState, action = {}) {
         ...state,
         currentScore: payload || state.currentScore || 0
         }
-      case ACCEPT:
-        return {
-          ...state,
-          entries: [
-            ...state.entries,
-            payload
-          ],
-          currentScore: state.currentScore + 1
-        }
-      case REJECT:
-        return {
-          ...state,
-          entries: [
-            ...state.entries,
-            payload
-          ],
-          currentScore: state.currentScore + 10
-        }
-      default: return state
-	}
+    case ACCEPT:
+      return {
+        ...state,
+        entries: [
+          ...state.entries,
+          payload
+        ],
+        currentScore: state.currentScore + 1
+      }
+    case REJECT:
+      return {
+        ...state,
+        entries: [
+          ...state.entries,
+          payload
+        ],
+        currentScore: state.currentScore + 10
+      }
+    default: return state
+  }
 }
