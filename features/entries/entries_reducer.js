@@ -2,17 +2,21 @@ const ACCEPT = 'ACCEPT',
       REJECT = 'REJECT',
       CURRENT_SCORE = 'CURRENT_SCORE';
 
-// action creators
+//actions
+const acceptEntry = entry => ({ type: ACCEPT, payload: entry })
+const rejectEntry = entry => ({ type: ACCEPT, payload: entry });
+
+//action creators
 export const accept = (entry) => {
   return dispatch => {
     const getScore = JSON.parse(localStorage.getItem('score'));
     const updatedScore = getScore + 1;
     // grab current entries -> []
     const entries = JSON.parse(localStorage.getItem('accept'));
-    const currentEntry = {...entry, timestamp: Date.now()}
+    const currentEntry = {...entry, timestamp: Date.now()};
     const updatedEntries = [...entries, currentEntry];
     // sending on the dispatch to reducer
-    dispatch({ type: ACCEPT, payload: currentEntry, updatedScore })
+    dispatch(acceptEntry(currentEntry));
     // set it to localStorage /score and entries
     localStorage.setItem('score', JSON.stringify(updatedScore));
     localStorage.setItem('accept', JSON.stringify(updatedEntries));
@@ -27,7 +31,7 @@ export const reject = (entry) => {
     const entries = JSON.parse(localStorage.getItem('reject'));
     const updatedEntries = [...entries, currentEntry];
 
-    dispatch({ type: REJECT, payload: currentEntry, updatedScore })
+    dispatch(rejectEntry(currentEntry));
 
     localStorage.setItem('score', JSON.stringify(updatedScore));
     localStorage.setItem('reject', JSON.stringify(updatedEntries));
