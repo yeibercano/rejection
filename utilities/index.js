@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
 import reduxThunk from 'redux-thunk';
 import reducers from '../features/reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-export const store = createStoreWithMiddleware(reducers);
+const logger = createLogger();
+export const store = createStore(reducers, composeWithDevTools(applyMiddleware(reduxThunk,logger)));
 
 export const localStorageDefaults = {
   score: 0,
