@@ -2,9 +2,10 @@ import React from 'react';
 import reactDom from 'react-dom/server';
 import test from 'tape';
 import dom from 'cheerio';
+import sinon from 'sinon';
 
 import Entries from './index.js';
-import { entries } from './entries_reducer.js';
+import { entries, accept, reject } from './entries_reducer.js';
 import { Provider } from 'react-redux';
 import { store } from '../../utilities'
 
@@ -90,7 +91,7 @@ test('Entries Reducer', nest => {
   nest.test('current score', assert => {
     const msg = 'should return currentScore';
     const output = entries(undefined, actions[2]);
-    
+
     const actual = output.currentScore;
     const expected = 0;
 
@@ -145,5 +146,35 @@ test('Entries Reducer', nest => {
 
     assert.same(actual, expected, msg);
     assert.end();
+  });
+});
+
+test('Actions Creators', nest => {
+  nest.test('actions accept', assert => {
+    const msg = 'dispatches an Accept action and reducer updates store'; {
+
+      store.dispatch(actions[0]);
+      const state = store.getState();
+
+      const expected = 1;
+      const actual = state.entries.currentScore;
+
+      assert.same(actual, expected, msg);
+      assert.end();
+    }
+  });
+  nest.test('actions reject', assert => {
+    const msg = 'dispatches a Reject action and reducer updates store'; {
+
+      const state = store.getState();
+      store.dispatch(actions[1]);
+      const stateAfter = store.getState();
+
+      const expected = state.entries.currentScore + 10;
+      const actual = stateAfter.entries.currentScore;
+
+      assert.same(actual, expected, msg);
+      assert.end();
+    }
   });
 });
