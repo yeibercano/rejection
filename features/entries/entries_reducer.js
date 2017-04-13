@@ -10,30 +10,30 @@ const rejectEntry = entry => ({ type: REJECT, payload: entry });
 export const accept = (entry) => {
   return dispatch => {
     const getScore = JSON.parse(localStorage.getItem('score'));
-    const updatedScore = getScore + 1;
+    const currentScore = getScore + 1;
     // grab current entries -> []
     const entries = JSON.parse(localStorage.getItem('accept'));
-    const currentEntry = {...entry, timestamp: Date.now()};
+    const currentEntry = {...entry, timestamp: Date.now(), currentScore};
     const updatedEntries = [...entries, currentEntry];
     // sending on the dispatch to reducer
     dispatch(acceptEntry(currentEntry));
     // set it to localStorage /score and entries
-    localStorage.setItem('score', JSON.stringify(updatedScore));
+    localStorage.setItem('score', JSON.stringify(currentScore));
     localStorage.setItem('accept', JSON.stringify(updatedEntries));
   }
 }
 export const reject = (entry) => {
   return dispatch => {
     const getScore = JSON.parse(localStorage.getItem('score'));
-    const updatedScore = getScore + 10;
+    const currentScore = getScore + 10;
 
-    const currentEntry = {...entry, timestamp: Date.now()}
+    const currentEntry = {...entry, timestamp: Date.now(), currentScore}
     const entries = JSON.parse(localStorage.getItem('reject'));
     const updatedEntries = [...entries, currentEntry];
 
     dispatch(rejectEntry(currentEntry));
 
-    localStorage.setItem('score', JSON.stringify(updatedScore));
+    localStorage.setItem('score', JSON.stringify(currentScore));
     localStorage.setItem('reject', JSON.stringify(updatedEntries));
   }
 }
@@ -53,14 +53,6 @@ export function entries (state = defaultState, action = {}) {
         currentScore: payload || state.currentScore || 0
         }
     case ACCEPT:
-      return {
-        ...state,
-        entries: [
-          ...state.entries,
-          payload
-        ],
-        currentScore: state.currentScore + 1
-      }
     case REJECT:
       return {
         ...state,
@@ -68,7 +60,7 @@ export function entries (state = defaultState, action = {}) {
           ...state.entries,
           payload
         ],
-        currentScore: state.currentScore + 10
+        currentScore: payload.currentScore
       }
     default: return state
   }
