@@ -4,7 +4,7 @@ const ACCEPT = 'ACCEPT',
 
 //actions
 const acceptEntry = entry => ({ type: ACCEPT, payload: entry })
-const rejectEntry = entry => ({ type: ACCEPT, payload: entry });
+const rejectEntry = entry => ({ type: REJECT, payload: entry });
 
 //action creators
 export const accept = (entry) => {
