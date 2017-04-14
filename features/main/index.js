@@ -26,6 +26,7 @@ class Main extends Component {
         <style jsx >{`
           .columnContainer {
             display: flex;
+            justify-content: space-between;
           }
           main {
             padding-bottom: 2rem;

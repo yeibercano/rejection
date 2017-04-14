@@ -21,14 +21,17 @@ export default () => (
         width: 80%;
         margin: 0px auto;
       }
+      .brandingColor {
+        background-color: tomato;
+      }
+      body {
+        margin: 0px;
+      }
       ul {
         padding: 0;
       }
       li {
         list-style-type: none;
-      }
-      .brandingColor {
-        background-color: tomato;
       }
     `}
     </style>
