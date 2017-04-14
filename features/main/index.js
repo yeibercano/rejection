@@ -27,6 +27,7 @@ class Main extends Component {
           .columnContainer {
             display: flex;
             justify-content: space-between;
+            flex: 1;
           }
           main {
             padding-bottom: 2rem;
