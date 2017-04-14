@@ -44,7 +44,7 @@ const defaultState = {
   currentScore: null
 }
 
-export function entries (state = defaultState, action = {}) {
+export const entries = (state = defaultState, action = {}) => {
 	const { type, payload, currentScore } = action;
 	switch (type) {
     case CURRENT_SCORE:
