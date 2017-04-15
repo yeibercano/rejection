@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { entries } from './entries/entries_reducer';
+import asks from './entries/entries_reducer';
 import { reducer as form } from 'redux-form';
 
 const reducers = combineReducers({
-  entries,
+  asks,
   form
 })
 
