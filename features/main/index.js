@@ -3,25 +3,17 @@ import Entries from '../entries';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { currentScore } from './actions';
+import { currentScore } from '../entries/entries_reducer';
 
 class Main extends Component {
-  componentDidMount() {
-    this.props.currentScore();
-  }
 
   render() {
-    let { score } = this.props;
-
-    if (score === 0) {
-      score = score;
-    } else if (!score) {
-      score = 'loading...';
-    }
+    const { state } = this.props;
+    const score = currentScore(state) === 0 || currentScore(state) > 0 ? currentScore(state) : 'Loading...'
 
     return (
       <main className="columnContainer centerContainer">
-        <Score score={score}/>
+        <Score score={score} />
         <Entries />
         <style jsx >{`
           .columnContainer {
@@ -39,6 +31,6 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ score: state.entries.currentScore });
+const mapStateToProps = state => ({ state });
 
-export default connect(mapStateToProps, { currentScore })(Main);
+export default connect(mapStateToProps, null)(Main);
