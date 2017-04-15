@@ -1,46 +1,34 @@
-const ACCEPT = 'ACCEPT',
-      REJECT = 'REJECT';
+// constants
+const ADD_QUESTION  = 'ADD_QUESTION';
 
-// reducers
 const defaultState = {
-  entries:[],
-  currentScore: null
+  questions:[]
 }
 
-export const entries = (state = defaultState, action = {}) => {
+// reducer
+export default (state = defaultState, action = {}) => {
 	const { type, payload } = action;
 	switch (type) {
-    case ACCEPT:
-    case REJECT:
-      return {
-        ...state,
-        entries: [
-          ...state.entries,
-          payload
-        ],
-      }
-    default: return state
+    case ADD_QUESTION:
+    return {
+      ...state,
+      questions: [
+        ...state.questions,
+        payload
+      ]
+    }
+    default: return state;
   }
 };
 
 // action creators
-// (data: d) => actionObject: { type: String, payload: Any }
-export const acceptEntry = entry => ({ type: ACCEPT, payload: entry });
-export const rejectEntry = entry => ({ type: REJECT, payload: entry });
+export const acceptEntry = question => ({ type: ACCEPT, payload: question });
+export const rejectEntry = question => ({ type: REJECT, payload: question });
 
 // selectors
-// (appState) => dataToSelect: Any
-const getSlice = state => state.entries;
-
-export const selectEntries = state => getSlice(state).entries;
-/*
-globalState = {
-  entries: {
-    entries: [],
-    currentScore
-  },
-  user,
-  history
-  ...
-}
-*/
+// asks state
+const getSlice = state => state.asks;
+// questions
+export const selectQuestions = state => getSlice(state).questions;
+//current score
+export const currentScore = state => selectQuestions(state).reduce((curr, acc) => curr.status === 'ACCEPT' ? accu + 1 : accu + 10, 0);
