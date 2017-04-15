@@ -1,9 +1,6 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import reducers from '../features/reducers';
 import { checkSetKeys, localStorageDefaults } from '../utilities';
+import { Provider } from 'react-redux';
 import { store } from '../utilities';
 
 import Home from '../features/home'
