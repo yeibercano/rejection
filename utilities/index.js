@@ -1,11 +1,14 @@
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
-import reduxThunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import reducers from '../features/reducers';
+import rootSaga from '../features/sagas'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+const sagaMiddleware = createSagaMiddleware();
+      sagaMiddleware.run(rootSaga);
 const logger = createLogger();
-export const store = createStore(reducers, composeWithDevTools(applyMiddleware(reduxThunk,logger)));
+export const store = createStore(reducers, composeWithDevTools(applyMiddleware(sagaMiddleware,logger)));
 
 export const localStorageDefaults = {
   score: 0,
