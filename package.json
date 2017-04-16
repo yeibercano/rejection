@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/yeibercano/rejection#readme",
   "dependencies": {
+    "axios": "^0.16.1",
     "next": "^2.0.0-beta.39",
     "redux-form": "^6.6.1"
   },
