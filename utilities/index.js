@@ -6,9 +6,9 @@ import rootSaga from '../features/sagas'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const sagaMiddleware = createSagaMiddleware();
-      sagaMiddleware.run(rootSaga);
 const logger = createLogger();
 export const store = createStore(reducers, composeWithDevTools(applyMiddleware(sagaMiddleware,logger)));
+sagaMiddleware.run(rootSaga);
 
 export const localStorageDefaults = {
   score: 0,

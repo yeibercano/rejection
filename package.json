@@ -23,7 +23,7 @@
   "homepage": "https://github.com/yeibercano/rejection#readme",
   "dependencies": {
     "next": "^2.0.0-beta.39",
-    "redux-form": "^6.6.1",
+    "redux-form": "^6.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
