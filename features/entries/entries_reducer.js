@@ -3,7 +3,7 @@ const ADD_QUESTION  = 'ADD_QUESTION';
 
 const defaultState = {
   questions:[]
-}
+};
 
 // reducer
 export default (state = defaultState, action = {}) => {
@@ -22,13 +22,12 @@ export default (state = defaultState, action = {}) => {
 };
 
 // action creators
-export const acceptEntry = question => ({ type: ACCEPT, payload: question });
-export const rejectEntry = question => ({ type: REJECT, payload: question });
+export const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
 
 // selectors
-// asks state
 const getSlice = state => state.asks;
-// questions
+
 export const selectQuestions = state => getSlice(state).questions;
-//current score
-export const currentScore = state => selectQuestions(state).reduce((curr, acc) => curr.status === 'ACCEPT' ? accu + 1 : accu + 10, 0);
+
+const currentScoreReducer = (acc, cur) => cur.status === 'ACCEPT' ? acc + 1: acc + 10;
+export const currentScore = state => selectQuestions(state).reduce(currentScoreReducer, 0);
