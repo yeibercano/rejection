@@ -13,7 +13,8 @@ sagaMiddleware.run(rootSaga);
 export const localStorageDefaults = {
   score: 0,
   accept: [],
-  reject: []
+  reject: [],
+  asks: []
 }
 
 export const checkSetKeys = function (defaults) {
