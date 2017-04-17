@@ -27,3 +27,7 @@ export const checkSetKeys = function (defaults) {
     }
   }
 }
+
+// local storage state
+const LOAD_STATE = 'LOAD_STATE';
+export const loadStateFromLocalStorage = () => store.dispatch({type:LOAD_STATE});
