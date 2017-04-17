@@ -11,9 +11,6 @@ export const store = createStore(reducers, composeWithDevTools(applyMiddleware(s
 sagaMiddleware.run(rootSaga);
 
 export const localStorageDefaults = {
-  score: 0,
-  accept: [],
-  reject: [],
   asks: []
 }
 
