@@ -1,5 +1,5 @@
 // constants
-const ADD_QUESTION = 'ADD_QUESTION', NEW_STATE = 'NEW_STATE';
+const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS';
 
 const defaultState = {
   questions:[]
@@ -9,7 +9,7 @@ const defaultState = {
 export default (state = defaultState, action = {}) => {
 	const { type, payload } = action;
 	switch (type) {
-    case NEW_STATE:
+    case FETCHED_QUESTIONS:
     return {
       ...state,
       questions: payload
