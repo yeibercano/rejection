@@ -3,13 +3,13 @@ import Entries from '../entries';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { currentScore } from '../entries/entries_reducer';
+import { getScore } from '../entries/entries_reducer';
 
 class Main extends Component {
 
   render() {
     const { state } = this.props;
-    const score = currentScore(state) === 0 || currentScore(state) > 0 ? currentScore(state) : 'Loading...'
+    const score = getScore(state) === null ? 'Loading...' : getScore(state);
 
     return (
       <main className="columnContainer centerContainer">

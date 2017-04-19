@@ -41,4 +41,4 @@ const currentScoreReducer = (acc, cur) => {
     return acc + 10;
   }
 }
-export const currentScore = state => selectQuestions(state).reduce(currentScoreReducer, 0);
+export const getScore = state => selectQuestions(state).reduce(currentScoreReducer, 0);
