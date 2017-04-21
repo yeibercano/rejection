@@ -17,10 +17,7 @@ export default (state = defaultState, action = {}) => {
     case ADD_QUESTION:
     return {
       ...state,
-      questions: [
-        ...state.questions,
-        payload
-      ]
+      questions: state.questions.concat([payload])
     }
     default: return state;
   }
