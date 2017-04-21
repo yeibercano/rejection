@@ -3,16 +3,17 @@ import { selectQuestions } from './entries/entries_reducer';
 import { store } from '../utilities';
 
 //actions - action creators
-const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE';
+const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE', SAVED_QUESTION = 'SAVED_QUESTION';
 const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
 const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: questions });
+const savedQuestion = () => ({ type: SAVED_QUESTION });
 
 //worker saga addQuestionAsync
-export function* addQuestionAsync(action) {
+export function* addQuestionAsync() {
   try {
     const newAsks = yield selectQuestions(store.getState());
     localStorage.setItem('asks', JSON.stringify(newAsks));
-    yield put(fetchedQuestions(newAsks));
+    yield put(savedQuestion());
   } catch (e) {
     console.log(e);
   }
