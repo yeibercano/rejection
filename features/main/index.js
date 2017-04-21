@@ -24,6 +24,18 @@ class Main extends Component {
           main {
             padding-bottom: 2rem;
           }
+          @media only screen and (min-width: 280px) and (max-width: 680px) {
+            .columnContainer {
+              flex-direction: column;
+              justify-content: center;
+            }
+            body {
+              font-size: 1rem;
+            }
+            section, aside {
+              width: 100%;
+            }
+          }
         `}
         </style>
       </main>
