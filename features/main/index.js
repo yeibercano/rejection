@@ -3,13 +3,13 @@ import Entries from '../entries';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { currentScore } from '../entries/entries_reducer';
+import { getScore } from '../entries/entries_reducer';
 
 class Main extends Component {
 
   render() {
     const { state } = this.props;
-    const score = currentScore(state) === 0 || currentScore(state) > 0 ? currentScore(state) : 'Loading...'
+    const score = getScore(state) === null ? 'Loading...' : getScore(state);
 
     return (
       <main className="columnContainer centerContainer">
@@ -23,6 +23,18 @@ class Main extends Component {
           }
           main {
             padding-bottom: 2rem;
+          }
+          @media only screen and (min-width: 280px) and (max-width: 680px) {
+            .columnContainer {
+              flex-direction: column;
+              justify-content: center;
+            }
+            body {
+              font-size: 1rem;
+            }
+            section, aside {
+              width: 100%;
+            }
           }
         `}
         </style>
