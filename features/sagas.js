@@ -1,4 +1,6 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
+import { selectQuestions } from './entries/entries_reducer';
+import { store } from '../utilities';
 
 //actions - action creators
 const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE';
@@ -8,8 +10,7 @@ const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: quest
 //worker saga addQuestionAsync
 export function* addQuestionAsync(action) {
   try {
-    const parsedAsks = JSON.parse(localStorage.getItem('asks'));
-    const newAsks = [...parsedAsks, action.payload];
+    const newAsks = yield selectQuestions(store.getState());
     localStorage.setItem('asks', JSON.stringify(newAsks));
     yield put(fetchedQuestions(newAsks));
   } catch (e) {
