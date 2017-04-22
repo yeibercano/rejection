@@ -1,23 +1,24 @@
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { put, call, takeEvery, select } from 'redux-saga/effects';
 import { selectQuestions } from './entries/entries_reducer';
-import { store } from '../utilities';
 
 //actions - action creators
-const ADD_QUESTION = 'ADD_QUESTION', LOADED_STATE = 'LOADED_STATE', LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
+const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
 const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
-const fetchedQuestions = questions => ({ type: LOADED_STATE, payload: questions });
+const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: questions });
 const addedQuestion = () => ({ type: ADDED_QUESTION });
 
-//worker saga addQuestionAsync
+//worker/task saga addQuestionAsync
 export function* addQuestionToStorage() {
   try {
-    const newAsks = yield selectQuestions(store.getState());
-    localStorage.setItem('asks', JSON.stringify(newAsks));
+    const stateQuestions = yield select(selectQuestions);
+    const serializedQuestions = JSON.stringify(stateQuestions);
+    localStorage.setItem('asks', serializedQuestions);
     yield put(addedQuestion());
   } catch (e) {
     console.log(e);
   }
 }
+
 //watcher saga - addQuestionAsync
 export function* watchAddQuestion() {
   yield takeEvery(ADD_QUESTION, addQuestionToStorage);
