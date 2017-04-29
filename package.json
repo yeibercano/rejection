@@ -2,7 +2,7 @@
   "name": "rejection",
   "version": "1.0.0",
   "description": "A student project for [Learn JavaScript with Eric Elliott](https://ericelliottjs.com).",
-  "main": "index.js",
+  "main": "pages/index.js",
   "scripts": {
     "test": "babel-node features/index.test.js",
     "dev": "next",
