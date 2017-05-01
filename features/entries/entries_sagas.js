@@ -1,6 +1,8 @@
 import { put, call, takeEvery, select } from 'redux-saga/effects';
 import { selectQuestions } from './entries_reducer';
 
+export const getQuestionFromLocalStorage = () => JSON.parse(localStorage.getItem('asks'))
+
 //actions - action creators
 const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
 const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
@@ -26,7 +28,7 @@ function* watchAddQuestion() {
 //worker saga fetchedQuestionsAsync
 export function* fetchQuestionsAsync() {
   try {
-    const parsedAsks =  yield JSON.parse(localStorage.getItem('asks'));
+    const parsedAsks =  yield call(getQuestionFromLocalStorage);
     yield put(fetchedQuestions(parsedAsks));
   } catch (e) {
     console.log(e);
