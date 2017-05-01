@@ -8,7 +8,7 @@ const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: quest
 const addedQuestion = () => ({ type: ADDED_QUESTION });
 
 //worker/task saga addQuestionAsync
-function* addQuestionToStorage() {
+export function* addQuestionToStorage() {
   try {
     const stateQuestions = yield select(selectQuestions);
     const serializedQuestions = JSON.stringify(stateQuestions);``
@@ -24,7 +24,7 @@ function* watchAddQuestion() {
   yield takeEvery(ADD_QUESTION, addQuestionToStorage);
 }
 //worker saga fetchedQuestionsAsync
-function* fetchQuestionsAsync() {
+export function* fetchQuestionsAsync() {
   try {
     const parsedAsks =  yield JSON.parse(localStorage.getItem('asks'));
     yield put(fetchedQuestions(parsedAsks));
