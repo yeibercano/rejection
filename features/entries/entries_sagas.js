@@ -29,7 +29,7 @@ function* watchAddQuestion() {
 export function* fetchQuestionsAsync() {
   try {
     const parsedAsks =  yield call(getQuestionFromLocalStorage);
-    yield put(fetchedQuestions(parsedAsks));
+    const result = yield put(fetchedQuestions(parsedAsks));
   } catch (e) {
     console.log(e);
   }
