@@ -12,6 +12,7 @@ const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
 const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: questions });
 const addedQuestion = () => ({ type: ADDED_QUESTION });
 
+// start testing
 test('Call fetchQuestionsAsync Saga', nest => {
   const generator = fetchQuestionsAsync();
 
@@ -19,7 +20,17 @@ test('Call fetchQuestionsAsync Saga', nest => {
     const msg = 'should get entries from local storage';
 
     const actual = generator.next().value;
-    const expected = call(getQuestionFromLocalStorage)
+    const expected = call(getQuestionFromLocalStorage);
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('- dispatches a fetchedQuestions', assert => {
+    const msg = 'should dispatch a FETCHED_QUESTIONS action with entries ';
+
+    const actual = generator.next().value;
+    const expected = put(fetchedQuestions());
 
     assert.same(actual, expected, msg);
     assert.end();
