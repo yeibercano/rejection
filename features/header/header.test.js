@@ -13,7 +13,7 @@ test('Header component', assert => {
   const $ = dom.load(render(el));
 
   const actual = $('a').html();
-  const expected = 'Brand';
+  const expected = 'Rejection';
 
   assert.same(actual, expected, msg);
   assert.end();
