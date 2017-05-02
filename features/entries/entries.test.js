@@ -5,7 +5,7 @@ import dom from 'cheerio';
 import sinon from 'sinon';
 
 import Entries from './index.js';
-import { entries, accept, reject } from './entries_reducer.js';
+import entries , {  accept, reject, getScore} from './entries_reducer.js';
 import { Provider } from 'react-redux';
 import { store } from '../../utilities'
 
@@ -88,11 +88,11 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
-  nest.test('current score', assert => {
+  nest.test(' - returns current score', assert => {
     const msg = 'should return currentScore';
-    const output = entries(undefined, actions[2]);
+    console.log('store', store)
 
-    const actual = output.currentScore;
+    const actual = getScore(store.getState());
     const expected = 0;
 
     assert.same(actual, expected, msg);
