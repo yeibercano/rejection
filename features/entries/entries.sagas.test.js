@@ -36,6 +36,16 @@ test('Call fetchQuestionsAsync Saga', nest => {
     assert.end();
   });
 
+  nest.test('- generator is DONE. It returns true and undefined', assert => {
+    const msg = 'should return { done: true, value: undefined }';
+
+    const actual = generator.next();
+    const expected = { done: true, value: undefined };
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
 });
 
 test('Call addQuestionToStorage Saga', nest => {
