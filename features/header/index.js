@@ -5,7 +5,7 @@ export default () => (
     <header className="centerContainer">
       <ul>
         <li>
-          <a className="brand" href="#">Brand</a>
+          <a className="brand" href="#">Rejection</a>
         </li>
       </ul>
     </header>
