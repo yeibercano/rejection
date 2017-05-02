@@ -13,7 +13,7 @@ const addedQuestion = () => ({ type: ADDED_QUESTION });
 export function* addQuestionToStorage() {
   try {
     const stateQuestions = yield select(selectQuestions);
-    const serializedQuestions = JSON.stringify(stateQuestions);``
+    const serializedQuestions = JSON.stringify(stateQuestions);
     localStorage.setItem('asks', serializedQuestions);
     yield put(addedQuestion());
   } catch (e) {
