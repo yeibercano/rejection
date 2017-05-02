@@ -1,7 +1,9 @@
 import { put, call, takeEvery, select } from 'redux-saga/effects';
 import { selectQuestions } from './entries_reducer';
 
-export const getQuestionFromLocalStorage = () => JSON.parse(localStorage.getItem('asks'))
+//declarative effects
+export const getQuestionFromLocalStorage = () => JSON.parse(localStorage.getItem('asks'));
+export const setAksInLocalStorage = asks => { localStorage.setItem('asks', JSON.stringify(asks)) }
 
 //actions - action creators
 const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
@@ -13,8 +15,7 @@ const addedQuestion = () => ({ type: ADDED_QUESTION });
 export function* addQuestionToStorage() {
   try {
     const stateQuestions = yield select(selectQuestions);
-    const serializedQuestions = JSON.stringify(stateQuestions);
-    localStorage.setItem('asks', serializedQuestions);
+    yield call(setAksInLocalStorage, stateQuestions);
     yield put(addedQuestion());
   } catch (e) {
     console.log(e);
