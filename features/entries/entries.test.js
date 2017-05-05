@@ -5,7 +5,7 @@ import dom from 'cheerio';
 import sinon from 'sinon';
 
 import Entries from './index.js';
-import entries , {  accept, reject, getScore} from './entries_reducer.js';
+import entries, { accept, reject, getScore } from './entries_reducer.js';
 import { Provider } from 'react-redux';
 import { store } from '../../utilities'
 
@@ -71,15 +71,13 @@ const actions = [
 
 //REDUCER
 const createState = ({
-  entries = [],
-  currentScore = null
+  questions = []
 } = {}) => ({
-  entries,
-  currentScore
+  questions
 });
 
 test('Entries Reducer', nest => {
-  nest.test('default state', assert => {
+  nest.test('- default state', assert => {
     const msg = 'should render default state';
     const actual = entries();
     const expected = createState();
