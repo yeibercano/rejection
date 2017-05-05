@@ -24,7 +24,7 @@ test('Entries Component', nest => {
     assert.end();
   });
 
-  nest.test('title', assert => {
+  nest.test('- title', assert => {
     const el = <Provider store={store}><Entries /></Provider>;
     const $ = dom.load(render(el));
     const title = 'Rejection';
@@ -37,7 +37,7 @@ test('Entries Component', nest => {
     assert.end();
   });
 
-  nest.test('paragraph', assert => {
+  nest.test('- paragraph', assert => {
     const el = <Provider store={store}><Entries /></Provider>;
     const $ = dom.load(render(el));
 
