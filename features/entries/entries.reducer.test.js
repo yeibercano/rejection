@@ -4,7 +4,7 @@ import test from 'tape';
 import dom from 'cheerio';
 
 import { store } from '../../utilities'
-import entries, { getScore } from './entries_reducer.js';
+import reducer, { getScore } from './entries_reducer.js';
 
 //DEFAULT STATE
 const createState = ({ questions = [] } = {}) => ({ questions });
@@ -19,7 +19,7 @@ const addedQuestion = () => ({ type: ADDED_QUESTION });
 test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
     const msg = 'should render default state';
-    const actual = entries();
+    const actual = reducer();
     const expected = createState();
 
     assert.same(actual, expected, msg);
@@ -28,8 +28,6 @@ test('Entries Reducer', nest => {
 
   nest.test(' - returns current score', assert => {
     const msg = 'should return currentScore';
-    console.log('store', store)
-
     const actual = getScore(store.getState());
     const expected = 0;
 
@@ -38,13 +36,10 @@ test('Entries Reducer', nest => {
   });
 
   nest.test('- accept ask', assert => {
-    const msg = 'should add an accepted entry';
-    const output = entries(
-      undefined,
-      actions[0]
-    );
+    const msg = 'should add an entry';
+    const output = reducer( undefined, addQuestion({}) );
 
-    const actual = output.entries.length;
+    const actual = output.questions.length;
     const expected = 1;
 
     assert.same(actual, expected, msg);
@@ -53,7 +48,7 @@ test('Entries Reducer', nest => {
 
   nest.test('update currentScore by 1', assert => {
     const msg = 'should add 1 to currentScore';
-    const output = entries(undefined, actions[0]);
+    const output = reducer(undefined, actions[0]);
 
     const previousState = entries();
     const actual = output.currentScore;
