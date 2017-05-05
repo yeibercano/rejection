@@ -52,6 +52,9 @@ test('Entries Component', nest => {
 
 });
 
+//DEFAULT STATE
+const createState = ({ questions = [] } = {}) => ({ questions });
+
 test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
     const msg = 'should render default state';
