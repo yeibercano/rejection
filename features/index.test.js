@@ -4,4 +4,5 @@ import './main/main.test';
 import './header/header.test';
 import './score/score.test';
 import './entries/entries.test';
+import './entries/entries.reducer.test';
 import './entries/entries.sagas.test';
