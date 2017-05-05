@@ -2,7 +2,6 @@ import React from 'react';
 import reactDom from 'react-dom/server';
 import test from 'tape';
 import dom from 'cheerio';
-import sinon from 'sinon';
 
 import Entries from './index.js';
 import entries, { accept, reject, getScore } from './entries_reducer.js';
@@ -53,28 +52,8 @@ test('Entries Component', nest => {
 
 });
 
-//CONST
-const  ACCEPT = 'ACCEPT', REJECT = 'REJECT', CURRENT_SCORE = 'CURRENT_SCORE';
-const actions = [
-  {
-    type: ACCEPT,
-    payload: { hola: 'hola' }
-  },
-  {
-    type: REJECT,
-    payload: { ciao: 'ciao' }
-  },
-  {
-    type: CURRENT_SCORE
-  }
-];
-
-//REDUCER
-const createState = ({
-  questions = []
-} = {}) => ({
-  questions
-});
+//DEFAULT STATE
+const createState = ({ questions = [] } = {}) => ({ questions });
 
 test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
@@ -97,7 +76,7 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
-  nest.test('accept ask', assert => {
+  nest.test('- accept ask', assert => {
     const msg = 'should add an accepted entry';
     const output = entries(
       undefined,
@@ -144,35 +123,5 @@ test('Entries Reducer', nest => {
 
     assert.same(actual, expected, msg);
     assert.end();
-  });
-});
-
-test('Actions Creators', nest => {
-  nest.test('actions accept', assert => {
-    const msg = 'dispatches an Accept action and reducer updates store'; {
-
-      store.dispatch(actions[0]);
-      const state = store.getState();
-
-      const expected = 1;
-      const actual = state.entries.currentScore;
-
-      assert.same(actual, expected, msg);
-      assert.end();
-    }
-  });
-  nest.test('actions reject', assert => {
-    const msg = 'dispatches a Reject action and reducer updates store'; {
-
-      const state = store.getState();
-      store.dispatch(actions[1]);
-      const stateAfter = store.getState();
-
-      const expected = state.entries.currentScore + 10;
-      const actual = stateAfter.entries.currentScore;
-
-      assert.same(actual, expected, msg);
-      assert.end();
-    }
   });
 });
