@@ -12,7 +12,7 @@ import { store } from '../../utilities'
 const render = reactDom.renderToStaticMarkup;
 
 test('Entries Component', nest => {
-  nest.test('inputs', assert => {
+  nest.test('- inputs', assert => {
     const el = <Provider store={store}><Entries /></Provider>;
     const $ = dom.load(render(el));
 
