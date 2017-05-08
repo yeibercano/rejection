@@ -6,7 +6,11 @@ import dom from 'cheerio';
 import { store } from '../../utilities'
 import reducer, { getScore } from './entries_reducer.js';
 
+// DEFAULT STATE
 const defaultState = { questions: [] };
+
+// GET EXPECTED STATE
+const getExpectedState = ( props = {} ) => Object.assign({}, defaultState, props);
 
 //ACTIONS
 const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
@@ -18,7 +22,7 @@ test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
     const msg = 'should render default state';
     const actual = reducer();
-    const expected = defaultState;
+    const expected = getExpectedState();
 
     assert.same(actual, expected, msg);
     assert.end();
