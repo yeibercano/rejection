@@ -11,7 +11,6 @@ const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LO
 // ACTIONS CREATORS
 const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
 const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: questions });
-const addedQuestion = () => ({ type: ADDED_QUESTION });
 
 test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
@@ -60,6 +59,17 @@ test('Entries Reducer', nest => {
 
     const actual = getScore(store.getState());
     const expected = 11;
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('- fetches all questions', assert => {
+    const msg = 'should return all questions';
+    const action = fetchedQuestions([{ status: 'REJECT'}, { status: 'ACCEPT'}]);
+
+    const actual = reducer(undefined, action ).questions;
+    const expected = [{ status: 'REJECT'}, { status: 'ACCEPT'}]
 
     assert.same(actual, expected, msg);
     assert.end();
