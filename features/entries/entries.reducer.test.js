@@ -4,7 +4,13 @@ import test from 'tape';
 import dom from 'cheerio';
 
 import { store } from '../../utilities'
-import reducer, { getScore } from './entries_reducer.js';
+import reducer, { getScore, currentScoreReducer } from './entries_reducer.js';
+
+// DEFAULT STATE
+const defaultState = { questions: [] };
+
+// GET EXPECTED STATE
+const getExpectedState = ( props = {} ) => Object.assign({}, defaultState, props);
 
 //ACTIONS
 const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
@@ -16,7 +22,7 @@ test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
     const msg = 'should render default state';
     const actual = reducer();
-    const expected = { questions: [] };
+    const expected = getExpectedState();
 
     assert.same(actual, expected, msg);
     assert.end();
@@ -44,9 +50,9 @@ test('Entries Reducer', nest => {
 
   nest.test('- updates score by 1', assert => {
     const msg = 'should add 1 to score';
-    const action = store.dispatch(addQuestion({ status: 'ACCEPT'}));
+    const state = reducer(defaultState, addQuestion({ status: 'ACCEPT'}) );
 
-    const actual = getScore(store.getState());
+    const actual = state.questions.reduce(currentScoreReducer, 0);
     const expected = 1;
 
     assert.same(actual, expected, msg);
@@ -55,10 +61,10 @@ test('Entries Reducer', nest => {
 
   nest.test('- updates score by 10', assert => {
     const msg = 'should add 10 to score';
-    const action = store.dispatch(addQuestion({ status: 'REJECT'}));
+    const state = reducer(defaultState, addQuestion({ status: 'REJECT'}) );
 
-    const actual = getScore(store.getState());
-    const expected = 11;
+    const actual = state.questions.reduce(currentScoreReducer, 0);
+    const expected = 10;
 
     assert.same(actual, expected, msg);
     assert.end();

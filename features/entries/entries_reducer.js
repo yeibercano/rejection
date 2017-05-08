@@ -31,7 +31,7 @@ const getSlice = state => state.asks;
 
 export const selectQuestions = state => getSlice(state).questions;
 
-const currentScoreReducer = (acc, cur) => {
+export const currentScoreReducer = (acc, cur) => {
   if (cur.status === 'ACCEPT') {
     return acc + 1;
   } else if (cur.status === 'REJECT') {
