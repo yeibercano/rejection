@@ -35,7 +35,7 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
-  nest.test('- accept ask', assert => {
+  nest.test('- adds an entry', assert => {
     const msg = 'should add an entry';
     const output = reducer( undefined, addQuestion({}) );
 
@@ -46,8 +46,8 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
-  nest.test('update currentScore by 1', assert => {
-    const msg = 'should add 1 to currentScore';
+  nest.test('- updates score by 1', assert => {
+    const msg = 'should add 1 to score';
     const action = store.dispatch(addQuestion({ status: 'ACCEPT'}));
 
     const actual = getScore(store.getState());
@@ -57,8 +57,8 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
-  nest.test('update currentScore by 10', assert => {
-    const msg = 'should add 10 to currentScore';
+  nest.test('- updates score by 10', assert => {
+    const msg = 'should add 10 to score';
     const action = store.dispatch(addQuestion({ status: 'REJECT'}));
 
     const actual = getScore(store.getState());
