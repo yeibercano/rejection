@@ -43,6 +43,6 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = state => ({ state });
+const mapStateToProps = state => ({ state: state.asks });
 
 export default connect(mapStateToProps, null)(Main);
