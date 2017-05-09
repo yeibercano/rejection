@@ -27,7 +27,7 @@ export default (state = defaultState, action = {}) => {
 export const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
 
 // selectors
-const getSlice = state => state.asks;
+export const getSlice = state => state;
 
 export const selectQuestions = state => getSlice(state).questions;
 
