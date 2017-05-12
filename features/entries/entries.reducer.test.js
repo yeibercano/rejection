@@ -2,25 +2,18 @@ import React from 'react';
 import reactDom from 'react-dom/server';
 import test from 'tape';
 import dom from 'cheerio';
+import cuid from 'cuid';
 
 import { store } from '../../utilities'
-import reducer, { getScore, selectQuestions } from './entries_reducer.js';
+import reducer, { addQuestion, fetchedQuestions, getScore, selectQuestions } from './entries_reducer.js';
 
-// DEFAULT MOCK STATE
+// default state
 const defaultState = {
-  asks: {
-    questions: []
-  }
+  questions: []
 };
 
-// GET EXPECTED STATE
+// expected state
 const getExpectedState = ( props = {} ) => Object.assign({}, defaultState, props);
-
-//ACTIONS
-const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
-// ACTIONS CREATORS
-const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
-const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: questions });
 
 test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
@@ -35,7 +28,7 @@ test('Entries Reducer', nest => {
   nest.test(' - returns current score', assert => {
     const msg = 'should return currentScore';
 
-    const actual = getScore(defaultState);
+    const actual = getScore({ asks: defaultState });
     const expected = 0;
 
     assert.same(actual, expected, msg);
@@ -45,10 +38,13 @@ test('Entries Reducer', nest => {
   nest.test('- adds an entry', assert => {
     const msg = 'should add an entry';
     const action = addQuestion({ status: 'ACCEPT', ask: 'would you donate your salary' });
-    const state = getExpectedState({ asks: { questions: [action.payload] } });
 
-    const actual = selectQuestions(state)[0];
-    const expected = { status: 'ACCEPT', ask: 'would you donate your salary' }
+    const actual = reducer(undefined, action);
+    const expected = getExpectedState({
+      questions: [
+        { status: 'ACCEPT', ask: 'would you donate your salary' }
+      ]
+    });
 
     assert.same(actual, expected, msg);
     assert.end();
