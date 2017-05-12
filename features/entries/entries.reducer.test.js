@@ -39,7 +39,7 @@ test('Entries Reducer', nest => {
   });
 
   nest.test('- addQuestion Action', assert => {
-    const msg = 'should return an objec with Status, id, ask, askee and timeStamp';
+    const msg = 'should return an object with: status, id, ask, askee and timeStamp';
     const action = addQuestion({
       status: 'ACCEPT',
       ask: 'would you donate your salary',
