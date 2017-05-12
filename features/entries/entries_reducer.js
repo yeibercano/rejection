@@ -4,8 +4,8 @@ const defaultState = {
 
 // reducer
 export default (state = defaultState, action = {}) => {
-	const { type, payload } = action;
-	switch (type) {
+  const { type, payload } = action;
+  switch (type) {
     case FETCHED_QUESTIONS:
     return {
       ...state,
