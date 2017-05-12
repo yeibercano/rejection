@@ -1,6 +1,3 @@
-// constants
-const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS';
-
 const defaultState = {
   questions:[]
 };
@@ -23,12 +20,18 @@ export default (state = defaultState, action = {}) => {
   }
 };
 
+// actions
+const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS',
+      LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
+
 // action creators
 export const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
+export const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: questions });
+export const addedQuestion = () => ({ type: ADDED_QUESTION });
+export const loadState = () => ({ type: LOAD_STATE });
 
 // selectors
 export const getSlice = state => state.asks;
-
 export const selectQuestions = state => getSlice(state).questions;
 
 export const currentScoreReducer = (acc, cur) => {
@@ -38,4 +41,5 @@ export const currentScoreReducer = (acc, cur) => {
     return acc + 10;
   }
 }
-export const getScore = state => selectQuestions(state).reduce(currentScoreReducer, 0);
+
+export const getScore = state => getSlice(state).questions.reduce(currentScoreReducer, 0);
