@@ -1,3 +1,4 @@
+import cuid from 'cuid';
 const defaultState = {
   questions:[]
 };
@@ -25,7 +26,22 @@ const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS',
       LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
 
 // action creators
-export const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
+export const addQuestion = ({
+  status = '',
+  ask = '',
+  askee = '',
+  timeStamp = Date.now(),
+  id = cuid()
+} = {}) => ({
+  type: ADD_QUESTION,
+  payload: {
+    status,
+    ask,
+    askee,
+    timeStamp,
+    id
+  }
+});
 export const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: questions });
 export const addedQuestion = () => ({ type: ADDED_QUESTION });
 export const loadState = () => ({ type: LOAD_STATE });
