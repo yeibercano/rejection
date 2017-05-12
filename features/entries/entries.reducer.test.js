@@ -12,6 +12,9 @@ const defaultState = {
   questions: []
 };
 
+//accept and reject entries
+const entry = status => ({ status, ask: 'would you donate your salary', askee: 'me', timeStamp: Date.now(), id: cuid() })
+
 // expected state
 const getExpectedState = ( props = {} ) => Object.assign({}, defaultState, props);
 
@@ -35,14 +38,25 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
-  nest.test('- adds an entry', assert => {
-    const msg = 'should add an entry';
-    const action = addQuestion({ status: 'ACCEPT', ask: 'would you donate your salary' });
+  nest.test('- addQuestion Action', assert => {
+    const msg = 'should return an object with: status, id, ask, askee and timeStamp';
+    const action = addQuestion({
+      status: 'ACCEPT',
+      ask: 'would you donate your salary',
+      askee: 'me',
+      id: cuid(),
+      timeStamp: Date.now()
+    });
 
-    const actual = reducer(undefined, action);
+    const actual = reducer(undefined, action)
     const expected = getExpectedState({
       questions: [
-        { status: 'ACCEPT', ask: 'would you donate your salary' }
+        { status: 'ACCEPT',
+          ask: 'would you donate your salary',
+          askee: 'me',
+          id: action.payload.id,
+          timeStamp: action.payload.timeStamp
+        }
       ]
     });
 
