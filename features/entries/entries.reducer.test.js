@@ -38,7 +38,7 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
-  nest.test('- addQuestion Action', assert => {
+  nest.test('- addQuestion Action Creator', assert => {
     const msg = 'should return an object with: status, id, ask, askee and timeStamp';
     const action = addQuestion({
       status: 'ACCEPT',
