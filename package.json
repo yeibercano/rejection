@@ -4,12 +4,12 @@
   "description": "A student project for [Learn JavaScript with Eric Elliott](https://ericelliottjs.com).",
   "main": "pages/index.js",
   "scripts": {
-    "test": "babel-node features/index.test.js",
+    "test": "babel-node app/index.test.js",
     "test-f": "babel-node features/index.test.js | faucet",
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "watch": "watch 'clear && npm run -s test' features"
+    "watch": "watch 'clear && npm run -s test' app"
   },
   "repository": {
     "type": "git",

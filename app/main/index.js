@@ -1,9 +1,9 @@
 import Score from '../score';
-import Entries from '../entries';
+import Entries from '../features/entries';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getScore } from '../entries/entries_reducer';
+import { getScore } from '../features/entries/entries_reducer';
 
 class Main extends Component {
 

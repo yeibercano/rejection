@@ -6,7 +6,7 @@ import dom from 'cheerio';
 import Entries from './index.js';
 import entries, { accept, reject, getScore } from './entries_reducer.js';
 import { Provider } from 'react-redux';
-import { store } from '../../utilities'
+import { store } from '../../../utilities'
 
 const render = reactDom.renderToStaticMarkup;
 
