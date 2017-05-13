@@ -4,7 +4,6 @@ import test from 'tape';
 import dom from 'cheerio';
 import cuid from 'cuid';
 
-import { store } from '../../utilities'
 import reducer, { addQuestion, fetchedQuestions, getScore, selectQuestions } from './entries_reducer.js';
 
 // default state
@@ -84,8 +83,8 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
-  nest.test('- updates score by 1', assert => {
-    const msg = 'should add 1 to score';
+  nest.test('- getScore selector with ACCEPT status', assert => {
+    const msg = 'should return a score of 1';
     const action = addQuestion(generateEntry('ACCEPT'));
     const state = getExpectedState({ asks: { questions: [action.payload] } });
 
