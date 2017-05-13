@@ -1,9 +1,9 @@
 import React from 'react';
 import { checkSetKeys, localStorageDefaults, store, loadStateFromLocalStorage } from '../utilities';
-import { currentScore } from '../features/entries/entries_reducer';
+import { currentScore } from '../app/features/entries/entries_reducer';
 import { Provider } from 'react-redux';
 
-import Home from '../features/home'
+import Home from '../app/home'
 
 export default class Index extends React.Component {
   componentDidMount() {

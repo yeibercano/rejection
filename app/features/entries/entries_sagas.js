@@ -1,5 +1,5 @@
 import { put, call, takeEvery, select } from 'redux-saga/effects';
-import { selectQuestions, addQuestion, fetchedQuestions, addedQuestion } from './entries_reducer';
+import { selectQuestions, addQuestion, fetchedQuestions, addedQuestion, loadState } from './entries_reducer';
 
 //declarative effects
 export const getQuestionFromLocalStorage = () => JSON.parse(localStorage.getItem('asks'));
