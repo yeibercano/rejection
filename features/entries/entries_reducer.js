@@ -42,7 +42,10 @@ export const addQuestion = ({
     id
   }
 });
-export const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: questions });
+export const fetchedQuestions = (asks = []) => ({
+  type: FETCHED_QUESTIONS,
+  payload: asks
+});
 export const addedQuestion = () => ({ type: ADDED_QUESTION });
 export const loadState = () => ({ type: LOAD_STATE });
 
