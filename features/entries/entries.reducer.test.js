@@ -13,7 +13,7 @@ const defaultState = {
 };
 
 //accept and reject entries
-const entry = status => ({ status, ask: 'would you donate your salary', askee: 'me', timeStamp: Date.now(), id: cuid() })
+const generateEntry = status => ({ status, ask: 'would you donate your salary?', askee: 'me', timeStamp: Date.now(), id: cuid() })
 
 // expected state
 const getExpectedState = ( props = {} ) => Object.assign({}, defaultState, props);
@@ -40,41 +40,7 @@ test('Entries Reducer', nest => {
 
   nest.test('- addQuestion Action Creator', assert => {
     const msg = 'should return an array with an object: status, id, ask, askee and timeStamp';
-    const action = addQuestion({
-      status: 'ACCEPT',
-      ask: 'would you donate your salary',
-      askee: 'me',
-      id: cuid(),
-      timeStamp: Date.now()
-    });
-
-    const actual = reducer(undefined, action)
-    const expected = getExpectedState({
-      questions: [
-        { status: 'ACCEPT',
-          ask: 'would you donate your salary',
-          askee: 'me',
-          id: action.payload.id,
-          timeStamp: action.payload.timeStamp
-        }
-      ]
-    });
-
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
-
-  nest.test('- fetchedQuestions Action Creator', assert => {
-    const msg = 'should return an array of user-objects from storage';
-    const action = fetchedQuestions([
-      {
-        status: 'ACCEPT',
-        ask: 'would you donate your salary?',
-        askee: 'me',
-        id: cuid(),
-        timeStamp: Date.now()
-      }
-    ]);
+    const action = addQuestion(generateEntry('ACCEPT'));
 
     const actual = reducer(undefined, action)
     const expected = getExpectedState({
@@ -92,9 +58,29 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
+  nest.test('- fetchedQuestions Action Creator', assert => {
+    const msg = 'should return an array of user-objects from storage';
+    const action = fetchedQuestions([ generateEntry('ACCEPT') ]);
+
+    const actual = reducer(undefined, action)
+    const expected = getExpectedState({
+      questions: [
+        { status: 'ACCEPT',
+          ask: 'would you donate your salary?',
+          askee: 'me',
+          id: action.payload[0].id,
+          timeStamp: action.payload[0].timeStamp
+        }
+      ]
+    });
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
   nest.test('- updates score by 1', assert => {
     const msg = 'should add 1 to score';
-    const action = addQuestion({ status: 'ACCEPT', ask: 'would you donate your salary' });
+    const action = addQuestion(generateEntry('ACCEPT'));
     const state = getExpectedState({ asks: { questions: [action.payload] } });
 
     const actual = getScore(state);
