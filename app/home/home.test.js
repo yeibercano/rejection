@@ -5,7 +5,7 @@ import dom from 'cheerio';
 
 import Home from './index.js';
 import { Provider } from 'react-redux';
-import { store } from '../../utilities'
+import { store } from '../utilities'
 
 const render = reactDom.renderToStaticMarkup;
 
