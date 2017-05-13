@@ -1,18 +1,10 @@
 import test from 'tape';
 import { put, call, takeEvery, select } from 'redux-saga/effects';
-import { selectQuestions } from './entries_reducer';
+import { selectQuestions, fetchedQuestions, addedQuestion, addQuestion } from './entries_reducer';
 
 // sagas and helpers/services for sagas
 import { addQuestionToStorage, fetchQuestionsAsync, getQuestionFromLocalStorage, setAksInLocalStorage } from './entries_sagas';
 
-// actions
-const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS', LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
-// action creators
-const addQuestion = question => ({ type: ADD_QUESTION, payload: question });
-const fetchedQuestions = questions => ({ type: FETCHED_QUESTIONS, payload: questions });
-const addedQuestion = () => ({ type: ADDED_QUESTION });
-
-// start testing
 test('Call fetchQuestionsAsync Saga', nest => {
   const generator = fetchQuestionsAsync();
 
@@ -83,7 +75,7 @@ test('Call addQuestionToStorage Saga', nest => {
   });
 
   nest.test('- generator is DONE. It returns true and undefined', assert => {
-    const msg = 'should return { done: true, value: undefined }';
+    const msg = 'should return an object: done, value';
 
     const actual = generator.next();
     const expected = { done: true, value: undefined };
