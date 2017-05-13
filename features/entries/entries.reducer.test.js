@@ -39,7 +39,7 @@ test('Entries Reducer', nest => {
   });
 
   nest.test('- addQuestion Action Creator', assert => {
-    const msg = 'should return an object with: status, id, ask, askee and timeStamp';
+    const msg = 'should return an array with an object: status, id, ask, askee and timeStamp';
     const action = addQuestion({
       status: 'ACCEPT',
       ask: 'would you donate your salary',
@@ -53,6 +53,34 @@ test('Entries Reducer', nest => {
       questions: [
         { status: 'ACCEPT',
           ask: 'would you donate your salary',
+          askee: 'me',
+          id: action.payload.id,
+          timeStamp: action.payload.timeStamp
+        }
+      ]
+    });
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('- fetchedQuestions Action Creator', assert => {
+    const msg = 'should return an array of user-objects from storage';
+    const action = fetchedQuestions([
+      {
+        status: 'ACCEPT',
+        ask: 'would you donate your salary?',
+        askee: 'me',
+        id: cuid(),
+        timeStamp: Date.now()
+      }
+    ]);
+
+    const actual = reducer(undefined, action)
+    const expected = getExpectedState({
+      questions: [
+        { status: 'ACCEPT',
+          ask: 'would you donate your salary?',
           askee: 'me',
           id: action.payload.id,
           timeStamp: action.payload.timeStamp
@@ -83,17 +111,6 @@ test('Entries Reducer', nest => {
 
     const actual = getScore(state);
     const expected = 10;
-
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
-
-  nest.test('- fetches all questions', assert => {
-    const msg = 'should return all questions';
-    const action = fetchedQuestions([{ status: 'REJECT'}, { status: 'ACCEPT'}]);
-
-    const actual = getExpectedState({ asks: { questions: action.payload } }).asks.questions;
-    const expected = [{ status: 'REJECT'}, { status: 'ACCEPT'}]
 
     assert.same(actual, expected, msg);
     assert.end();
