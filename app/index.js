@@ -6,7 +6,7 @@ import Home from './home'
 
 export default class Index extends React.Component {
   componentDidMount() {
-    database.ref('users').on('value', data => loadState(data.val()) )
+    loadState()
   }
 
   render() {
