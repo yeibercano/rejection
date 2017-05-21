@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id":"",
+      "name":"",
+      "email":"",
+      "asks": [
+        {
+          "id":"",
+          "ask":"",
+          "askee":"",
+          "status":"",
+          "timestamp":""
+        }
+      ]
+    }
+  ]
+}

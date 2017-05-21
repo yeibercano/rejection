@@ -24,6 +24,7 @@
   "homepage": "https://github.com/yeibercano/rejection#readme",
   "dependencies": {
     "axios": "^0.16.1",
+    "firebase": "^3.9.0",
     "firebase-admin": "^4.2.1",
     "next": "^2.0.0-beta.39",
     "redux-form": "^6.6.1"
