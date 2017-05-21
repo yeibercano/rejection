@@ -11,4 +11,4 @@ export const store = createStore(reducers, composeWithDevTools(applyMiddleware(s
 sagaMiddleware.run(rootSaga);
 
 const LOAD_STATE = 'LOAD_STATE';
-export const loadState = payload => store.dispatch({type:LOAD_STATE, payload});
+export const loadState = () => store.dispatch({type:LOAD_STATE});
