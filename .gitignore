@@ -1,6 +1,5 @@
 node_modules
 .next
-.secret.json
 *.log
 *.csv
 *.dat
