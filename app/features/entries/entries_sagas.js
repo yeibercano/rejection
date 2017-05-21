@@ -1,9 +1,9 @@
 import { put, call, takeEvery, select } from 'redux-saga/effects';
 import { selectQuestions, addQuestion, fetchedQuestions, addedQuestion, loadState } from './entries_reducer';
+import { database } from '../../storage/firebase';
 
 //declarative effects
-export const getQuestionFromLocalStorage = () => JSON.parse(localStorage.getItem('asks'));
-export const setAksInLocalStorage = asks => { localStorage.setItem('asks', JSON.stringify(asks)) }
+export const getQuestionFromLocalStorage = () => database.ref().once('value', s => s.val() );
 
 //worker/task saga addQuestionAsync
 export function* addQuestionToStorage() {
@@ -21,10 +21,9 @@ function* watchAddQuestion() {
   yield takeEvery(addQuestion().type, addQuestionToStorage);
 }
 //worker saga fetchedQuestionsAsync
-export function* fetchQuestionsAsync() {
+export function* fetchQuestionsAsync({payload}) {
   try {
-    const parsedAsks =  yield call(getQuestionFromLocalStorage);
-    const result = yield put(fetchedQuestions(parsedAsks));
+    const result = yield put(fetchedQuestions(payload));
   } catch (e) {
     console.log(e);
   }
