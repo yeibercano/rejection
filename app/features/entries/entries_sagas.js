@@ -9,6 +9,7 @@ export const addAskToUserStorage = ask => database.ref(userAsks).push(ask);
 const userAsksEventChannel = () => {
   return eventChannel( emit => database.ref(userAsks).on('child_added', data => emit(data.val()) )  )
 }
+export const updatedChannelAsks = userAsksEventChannel();
 
 //worker/task saga addQuestionAsync
 export function* addQuestionToStorage({ payload }) {
@@ -27,7 +28,7 @@ function* watchAddQuestion() {
 //worker saga fetchedQuestionsAsync
 export function* fetchQuestionsAsync() {
   try {
-    const updatedChannelAsks = userAsksEventChannel();
+
 
     while(true) {
       const lastAdded = yield take(updatedChannelAsks);

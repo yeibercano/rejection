@@ -1,18 +1,18 @@
 import test from 'tape';
-import { put, call, takeEvery, select } from 'redux-saga/effects';
+import { put, call, takeEvery, select, take } from 'redux-saga/effects';
 import { selectQuestions, fetchedQuestions, addedQuestion, addQuestion } from './entries_reducer';
 
 // sagas and helpers/services for sagas
-import { addQuestionToStorage, fetchQuestionsAsync, getQuestionFromLocalStorage, setAksInLocalStorage } from './entries_sagas';
+import { addQuestionToStorage, fetchQuestionsAsync, getQuestionFromLocalStorage, setAksInLocalStorage, updatedChannelAsks  } from './entries_sagas';
 
 test('Call fetchQuestionsAsync Saga', nest => {
   const generator = fetchQuestionsAsync();
 
-  nest.test('  - get entries from local storage ', assert => {
+  nest.test('  - get entries from user storage ', assert => {
     const msg = 'should get entries from local storage';
 
     const actual = generator.next().value;
-    const expected = call(getQuestionFromLocalStorage);
+    const expected = take(updatedChannelAsks);
 
     assert.same(actual, expected, msg);
     assert.end();
