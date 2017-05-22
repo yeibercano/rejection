@@ -82,7 +82,7 @@ test('Entries Reducer', nest => {
           ask: '',
           askee: '',
           status: '',
-          timestamp: '' 
+          timestamp: ''
         },
         { status: 'ACCEPT',
           ask: 'would you donate your salary?',
@@ -100,7 +100,7 @@ test('Entries Reducer', nest => {
   nest.test('- getScore selector with ACCEPT status', assert => {
     const msg = 'should return a score of 1';
     const action = addQuestion(generateEntry('ACCEPT'));
-    const state = getExpectedState({ asks: { questions: [action.payload] } });
+    const state = getExpectedState({ asksReducer: { asks: [action.payload] } });
 
     const actual = getScore(state);
     const expected = 1;
