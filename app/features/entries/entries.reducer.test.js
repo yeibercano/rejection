@@ -50,27 +50,6 @@ test('Entries Reducer', nest => {
     assert.end();
   });
 
-  nest.test('- addQuestion Action Creator', assert => {
-    const msg = 'should return an array with an object: status, id, ask, askee and timeStamp';
-    const action = addQuestion(generateEntry('ACCEPT'));
-
-    const actual = reducer(undefined, action)
-    const expected = getExpectedState({
-      asks: [
-        { ask: '', askee: '', status: '', timestamp: '' },
-        { status: 'ACCEPT',
-          ask: 'would you donate your salary?',
-          askee: 'me',
-          id: action.payload.id,
-          timeStamp: action.payload.timeStamp
-        }
-      ]
-    });
-
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
-
   nest.test('- fetchedQuestions Action Creator', assert => {
     const msg = 'should return an array of user-objects from storage';
     const action = fetchedQuestions(generateEntry('ACCEPT'));
