@@ -44,8 +44,8 @@ test('Call fetchQuestionsAsync Saga', nest => {
 test('Call addQuestionToStorage Saga', nest => {
   const generator = addQuestionToStorage();
 
-  nest.test(' - select questions - select(selectQuestions) ', assert => {
-    const msg = 'should get questions/entries from state';
+  nest.test(' - call addAskToUserStorage to post on DB ', assert => {
+    const msg = 'should call addAskToUserStorage, add ask to DB';
 
     // once DB is connected, we'll connect to it and not from state
     const actual = generator.next().value;
