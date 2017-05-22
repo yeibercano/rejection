@@ -8,7 +8,14 @@ import reducer, { addQuestion, fetchedQuestions, getScore, selectQuestions } fro
 
 // default state
 const defaultState = {
-  questions: []
+  asks: [
+    {
+      ask: '',
+      askee: '',
+      status: '',
+      timestamp: ''
+    }
+  ]
 };
 
 //accept and reject entries
@@ -27,7 +34,7 @@ test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
     const msg = 'should render default state';
     const actual = reducer();
-    const expected = { questions: [] };
+    const expected = defaultState;
 
     assert.same(actual, expected, msg);
     assert.end();
