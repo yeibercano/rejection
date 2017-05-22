@@ -12,7 +12,7 @@ const userAsksEventChannel = () => {
 export const updatedChannelAsks = userAsksEventChannel();
 
 //worker/task saga addQuestionAsync
-export function* addQuestionToStorage({ payload }) {
+export function* addQuestionToStorage({ payload } = {}) {
   try {
     const recentlyAdded = yield call(addAskToUserStorage, payload);
     yield put(addedQuestion());
