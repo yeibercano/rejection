@@ -78,11 +78,17 @@ test('Entries Reducer', nest => {
     const actual = reducer(defaultState, action)
     const expected = getExpectedState({
       asks: [
+        {
+          ask: '',
+          askee: '',
+          status: '',
+          timestamp: '' 
+        },
         { status: 'ACCEPT',
           ask: 'would you donate your salary?',
           askee: 'me',
-          id: action.payload[0].id,
-          timeStamp: action.payload[0].timeStamp
+          id: action.payload.id,
+          timeStamp: action.payload.timeStamp
         }
       ]
     });
