@@ -17,4 +17,17 @@ test('Signin component', assert => {
 
   assert.same(actual, expected, msg);
   assert.end();
+
+});
+
+test('Signin component', assert => {
+  const msg = 'should render Sign In text inside of .signin class';
+  const el = <Signin />
+  const $ = dom.load(render(el));
+
+  const actual = $('.signin').html();
+  const expected = 'Sign In';
+
+  assert.same(actual, expected, msg);
+  assert.end();
 });
