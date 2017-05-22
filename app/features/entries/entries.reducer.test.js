@@ -8,7 +8,14 @@ import reducer, { addQuestion, fetchedQuestions, getScore, selectQuestions } fro
 
 // default state
 const defaultState = {
-  questions: []
+  asks: [
+    {
+      ask: '',
+      askee: '',
+      status: '',
+      timestamp: ''
+    }
+  ]
 };
 
 //accept and reject entries
@@ -27,7 +34,7 @@ test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
     const msg = 'should render default state';
     const actual = reducer();
-    const expected = { questions: [] };
+    const expected = defaultState;
 
     assert.same(actual, expected, msg);
     assert.end();
@@ -36,7 +43,7 @@ test('Entries Reducer', nest => {
   nest.test(' - returns current score', assert => {
     const msg = 'should return currentScore';
 
-    const actual = getScore({ asks: defaultState });
+    const actual = getScore({ asksReducer: { asks: defaultState.asks } });
     const expected = 0;
 
     assert.same(actual, expected, msg);
@@ -49,7 +56,8 @@ test('Entries Reducer', nest => {
 
     const actual = reducer(undefined, action)
     const expected = getExpectedState({
-      questions: [
+      asks: [
+        { ask: '', askee: '', status: '', timestamp: '' },
         { status: 'ACCEPT',
           ask: 'would you donate your salary?',
           askee: 'me',
@@ -65,16 +73,22 @@ test('Entries Reducer', nest => {
 
   nest.test('- fetchedQuestions Action Creator', assert => {
     const msg = 'should return an array of user-objects from storage';
-    const action = fetchedQuestions([ generateEntry('ACCEPT') ]);
+    const action = fetchedQuestions(generateEntry('ACCEPT'));
 
-    const actual = reducer(undefined, action)
+    const actual = reducer(defaultState, action)
     const expected = getExpectedState({
-      questions: [
+      asks: [
+        {
+          ask: '',
+          askee: '',
+          status: '',
+          timestamp: ''
+        },
         { status: 'ACCEPT',
           ask: 'would you donate your salary?',
           askee: 'me',
-          id: action.payload[0].id,
-          timeStamp: action.payload[0].timeStamp
+          id: action.payload.id,
+          timeStamp: action.payload.timeStamp
         }
       ]
     });
@@ -86,7 +100,7 @@ test('Entries Reducer', nest => {
   nest.test('- getScore selector with ACCEPT status', assert => {
     const msg = 'should return a score of 1';
     const action = addQuestion(generateEntry('ACCEPT'));
-    const state = getExpectedState({ asks: { questions: [action.payload] } });
+    const state = getExpectedState({ asksReducer: { asks: [action.payload] } });
 
     const actual = getScore(state);
     const expected = 1;
@@ -98,7 +112,7 @@ test('Entries Reducer', nest => {
   nest.test('- getScore selector with REJECT status', assert => {
     const msg = 'should return a score of 10';
     const action = addQuestion(generateEntry('REJECT'));;
-    const state = getExpectedState({ asks: { questions: [action.payload] } });
+    const state = getExpectedState({ asksReducer: { asks: [action.payload] } });
 
     const actual = getScore(state);
     const expected = 10;
