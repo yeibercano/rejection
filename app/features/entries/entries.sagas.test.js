@@ -8,8 +8,8 @@ import { addQuestionToStorage, fetchQuestionsAsync, getQuestionFromLocalStorage,
 test('Call fetchQuestionsAsync Saga', nest => {
   const generator = fetchQuestionsAsync();
 
-  nest.test('  - get entries from user storage ', assert => {
-    const msg = 'should get entries from local storage';
+  nest.test('  - should receive any new asks added by user ', assert => {
+    const msg = 'takes new asks added to updatedChannelAsks';
 
     const actual = generator.next().value;
     const expected = take(updatedChannelAsks);
@@ -28,11 +28,12 @@ test('Call fetchQuestionsAsync Saga', nest => {
     assert.end();
   });
 
-  nest.test('- generator is DONE. It returns true and undefined', assert => {
-    const msg = 'should return { done: true, value: undefined }';
+
+  nest.test('- generator is remains active listening for asks added', assert => {
+    const msg = 'should return an active listening take';
 
     const actual = generator.next();
-    const expected = { done: true, value: undefined };
+    const expected = { done: false, value: take(updatedChannelAsks) };
 
     assert.same(actual, expected, msg);
     assert.end();
@@ -75,7 +76,7 @@ test('Call addQuestionToStorage Saga', nest => {
   });
 
   nest.test('- generator is DONE. It returns true and undefined', assert => {
-    const msg = 'should return an object: done, value';
+    const msg = 'should return { done: true, value: undefined }';
 
     const actual = generator.next();
     const expected = { done: true, value: undefined };
