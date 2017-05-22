@@ -4,16 +4,16 @@ import { database } from '../../storage/firebase';
 import { eventChannel } from 'redux-saga';
 
 //declarative effects
-export const getQuestionFromLocalStorage = () => database.ref().once('value', s => s.val() );
-const usersEventChannel = () => {
-  return eventChannel( emit => database.ref('users').on('value', data => emit(data.val()) )  )
+const userAsks = 'users/userId/asks'
+export const addAskToUserStorage = ask => database.ref(userAsks).push(ask);
+const userAsksEventChannel = () => {
+  return eventChannel( emit => database.ref(userAsks).on('child_added', data => emit(data.val()) )  )
 }
 
 //worker/task saga addQuestionAsync
-export function* addQuestionToStorage() {
+export function* addQuestionToStorage({ payload }) {
   try {
-    const stateQuestions = yield select(selectQuestions);
-    yield call(setAksInLocalStorage, stateQuestions);
+    const recentlyAdded = yield call(addAskToUserStorage, payload);
     yield put(addedQuestion());
   } catch (e) {
     console.log(e);
@@ -27,11 +27,11 @@ function* watchAddQuestion() {
 //worker saga fetchedQuestionsAsync
 export function* fetchQuestionsAsync() {
   try {
-    const updatedChannel = usersEventChannel();
-    
+    const updatedChannelAsks = userAsksEventChannel();
+
     while(true) {
-      const users = yield take(updatedChannel);
-      yield put(fetchedQuestions(users));
+      const lastAdded = yield take(updatedChannelAsks);
+      yield put(fetchedQuestions(lastAdded));
     }
 
   } catch (e) {
