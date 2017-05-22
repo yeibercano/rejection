@@ -1,8 +1,9 @@
+import { auth, googleAuthProvider } from '../../storage/firebase';
 
-const Signin = ({score}) => {
+const Signin = () => {
   return (
       <aside>
-          <button className="signin">signin</button>
+          <button className="signin">Sign In</button>
       </aside>
     );
 }
