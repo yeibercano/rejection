@@ -112,7 +112,7 @@ test('Entries Reducer', nest => {
   nest.test('- getScore selector with REJECT status', assert => {
     const msg = 'should return a score of 10';
     const action = addQuestion(generateEntry('REJECT'));;
-    const state = getExpectedState({ asks: { questions: [action.payload] } });
+    const state = getExpectedState({ asksReducer: { asks: [action.payload] } });
 
     const actual = getScore(state);
     const expected = 10;
