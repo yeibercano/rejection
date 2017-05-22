@@ -3,7 +3,7 @@ import { put, call, takeEvery, select, take } from 'redux-saga/effects';
 import { selectQuestions, fetchedQuestions, addedQuestion, addQuestion } from './entries_reducer';
 
 // sagas and helpers/services for sagas
-import { addQuestionToStorage, fetchQuestionsAsync, getQuestionFromLocalStorage, setAksInLocalStorage, updatedChannelAsks  } from './entries_sagas';
+import { addQuestionToStorage, fetchQuestionsAsync, addAskToUserStorage, updatedChannelAsks  } from './entries_sagas';
 
 test('Call fetchQuestionsAsync Saga', nest => {
   const generator = fetchQuestionsAsync();
@@ -49,17 +49,7 @@ test('Call addQuestionToStorage Saga', nest => {
 
     // once DB is connected, we'll connect to it and not from state
     const actual = generator.next().value;
-    const expected = select(selectQuestions);
-
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
-
-  nest.test('- serializes questions', assert => {
-    const msg = 'should call setAksInLocalStorage to serialize asks';
-
-    const actual = generator.next().value;
-    const expected = call(setAksInLocalStorage, undefined);
+    const expected = call(addAskToUserStorage, undefined);
 
     assert.same(actual, expected, msg);
     assert.end();
