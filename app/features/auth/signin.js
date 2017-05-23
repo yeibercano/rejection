@@ -2,15 +2,16 @@ import { auth, googleAuthProvider } from '../../storage/firebase';
 
 const Signin = () => {
   return (
-    <aside>
+    <aside className="signinComponent">
         <button className="signin" onClick={() => auth.signInWithPopup(googleAuthProvider) }>
           Sign In
         </button>
-        <style jsx> {`
-          aside {
+        <style jsx>{`
+          .signinComponent {
             width: auto;
           }
-        `}</style>
+        `}
+        </style>
     </aside>
   );
 }
