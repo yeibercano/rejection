@@ -21,6 +21,11 @@ class Main extends Component {
             justify-content: space-between;
             flex: 1;
           }
+          .flexHorizontalBetween {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+          }
           main {
             padding-bottom: 2rem;
           }
