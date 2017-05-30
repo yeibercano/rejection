@@ -1,9 +1,9 @@
-import { auth, googleAuthProvider } from '../../storage/firebase';
+import { authUser, auth, googleAuthProvider } from '../../storage/firebase';
 
 const Signin = () => {
   return (
     <aside className="signinComponent">
-      <button className="signin" onClick={() => auth.signInWithPopup(googleAuthProvider) }>
+      <button className="signin" onClick={ () => authUser(auth, googleAuthProvider) }>
         Sign In
       </button>
       <style jsx>{`
