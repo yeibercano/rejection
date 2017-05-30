@@ -16,3 +16,6 @@ export default firebase;
 export const database = firebase.database();
 export const auth = firebase.auth();
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+
+export const getUser = user => ({ user });
+export const authUser = (authorization, provider) => authorization.signInWithPopup(provider).then(getUser);
