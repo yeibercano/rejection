@@ -34,7 +34,7 @@ test('Entries Reducer', nest => {
   nest.test('- default state', assert => {
     const msg = 'should render default state';
     const actual = reducer();
-    const expected = defaultState;
+    const expected = getExpectedState();
 
     assert.same(actual, expected, msg);
     assert.end();
