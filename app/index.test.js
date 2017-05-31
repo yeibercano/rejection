@@ -7,3 +7,4 @@ import './features/entries/entries.test';
 import './features/entries/entries.reducer.test';
 import './features/entries/entries.sagas.test';
 import './features/auth/signin.test';
+import './features/auth/auth.reducer.test';
