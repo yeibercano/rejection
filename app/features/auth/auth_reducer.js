@@ -4,7 +4,18 @@ const defaultState = {
 }
 
 const USER_LOGGED_IN = 'USER_LOGGED_IN';
-export const userLoggedIn = (user={}) => ({type:USER_LOGGED_IN, payload: user});
+export const userLoggedIn = ({
+  email = '',
+  displayName = '',
+  uid = ''
+} = {}) => ({
+  type: USER_LOGGED_IN,
+  payload: {
+    email,
+    displayName,
+    uid
+  }
+});
 
 export default (state=defaultState, action={}) => {
   const { type, payload } = action;
