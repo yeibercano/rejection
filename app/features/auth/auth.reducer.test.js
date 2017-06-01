@@ -20,8 +20,8 @@ test('User Reducer', nest => {
     assert.end();
   });
 
-  nest.test('- add user to state', assert => {
-    const msg = 'should return state with a user';
+  nest.test('- add logged in user to state', assert => {
+    const msg = 'should return state with a logged in user';
     const action = userLoggedIn();
     const expected = { user: {}};
     const actual = userReducer(expectedState(), action);
@@ -29,6 +29,5 @@ test('User Reducer', nest => {
     assert.same(expected, actual, msg);
     assert.end();
   });
-
 
 });
