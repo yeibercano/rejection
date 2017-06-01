@@ -17,4 +17,13 @@ test('Signin User Saga', nest => {
     assert.end();
   });
 
+  nest.test(' - call setToken to place UID in local storage  ', assert => {
+    const msg = 'should call yield with setToken';
+    const actual = generator.next().value;
+    const expected = call(setToken, {uid:''});
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
 });
