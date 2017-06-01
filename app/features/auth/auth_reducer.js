@@ -3,7 +3,8 @@ const defaultState = {
   user: {}
 }
 
-const USER_LOGGED_IN = 'USER_LOGGED_IN';
+const USER_LOGGED_IN = 'USER_LOGGED_IN', USER_LOGGIN_REQUESTED = 'USER_LOGGIN_REQUESTED';
+export const userLogginRequested = () => ({type: USER_LOGGIN_REQUESTED})
 export const userLoggedIn = ({
   email = '',
   displayName = '',
