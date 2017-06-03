@@ -22,7 +22,7 @@ export function* signInUserAsync() {
     const userAuth = yield call(authUser, auth, googleAuthProvider);
     const user = userAuth ? userAuth.user.user : {};
     yield call(setToken, user);
-    yield put(userLoggedIn(user));
+    yield put(userLoggedIn, user);
 
   } catch (e) {
     console.log('error -->', e);
