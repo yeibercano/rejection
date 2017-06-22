@@ -4,9 +4,13 @@ import test from 'tape';
 import dom from 'cheerio';
 import cuid from 'cuid';
 
-import userReducer, { userLoggedIn } from './auth_reducer';
+import userReducer, { userLoggedIn, getUser } from './auth_reducer';
 const defaultState = {
-  user: {}
+  user: {
+    email: '',
+    displayName: '',
+    uid: ''
+  }
 }
 const loggedInUser = {
   uid: cuid(),
@@ -37,6 +41,23 @@ test('User Reducer', nest => {
       }
     };
     const actual = userReducer(defaultState, action);
+
+    assert.same(actual, expected, msg);
+    assert.end();
+  });
+
+  nest.test('- getUser Selector', assert => {
+    const msg = 'should return state with user object';
+    const fixture = {
+      user: {
+        email: 'yeibercano@gmail.com',
+        displayName: 'Yeiber Cano',
+        uid: '213123123123123'
+      }
+    }
+
+    const actual = getUser(fixture);
+    const expected = fixture;
 
     assert.same(actual, expected, msg);
     assert.end();
