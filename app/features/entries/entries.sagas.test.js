@@ -5,40 +5,44 @@ import { selectQuestions, fetchedQuestions, addedQuestion, addQuestion } from '.
 // sagas and helpers/services for sagas
 import { addQuestionToStorage, fetchQuestionsAsync, addAskToUserStorage, updatedChannelAsks  } from './entries_sagas';
 
-test('Call fetchQuestionsAsync Saga', nest => {
-  const generator = fetchQuestionsAsync();
+// idea to prevent .next() .next() .nex() calls
+const generatorStep = (generator, step, ...args) => {
+  const iterator = generator(...args);
+  let val;
+  for (let i = 0; i < step; i++) {
+    val = iterator.next();
+  }
+  return val;
+};
 
-  nest.test('  - should receive any new asks added by user ', assert => {
-    const msg = 'takes new asks added to updatedChannelAsks';
+test('FetchQuestionsAsync step 1', assert => {
+  const msg = 'should receive any new asks added by user';
 
-    const actual = generator.next().value;
-    const expected = take(updatedChannelAsks);
+  const actual = generatorStep(fetchQuestionsAsync, 1).value;
+  const expected = take(updatedChannelAsks);
 
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
+  assert.same(actual, expected, msg);
+  assert.end();
+});
 
-  nest.test('- dispatches a fetchedQuestions', assert => {
+test('- FetchQuestionsAsync step 2', assert => {
     const msg = 'should dispatch a FETCHED_QUESTIONS action with entries ';
 
-    const actual = generator.next().value;
+    const actual = generatorStep(fetchQuestionsAsync, 2).value;
     const expected = put(fetchedQuestions());
 
     assert.same(actual, expected, msg);
     assert.end();
-  });
+});
 
+test('- step 3', assert => {
+  const msg = 'should return an active listening take';
 
-  nest.test('- generator is remains active listening for asks added', assert => {
-    const msg = 'should return an active listening take';
+  const actual = generatorStep(fetchQuestionsAsync, 3).value;
+  const expected = take(updatedChannelAsks);
 
-    const actual = generator.next();
-    const expected = { done: false, value: take(updatedChannelAsks) };
-
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
-
+  assert.same(actual, expected, msg);
+  assert.end();
 });
 
 test('Call addQuestionToStorage Saga', nest => {
