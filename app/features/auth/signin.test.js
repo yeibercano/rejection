@@ -20,7 +20,7 @@ test('Signin component', assert => {
 
 });
 
-test('Signin component', assert => {
+test('Signin component text', assert => {
   const msg = 'should render Sign In text inside of .signin class';
   const el = <Signin />
   const $ = dom.load(render(el));
