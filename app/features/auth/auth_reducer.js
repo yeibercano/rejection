@@ -1,6 +1,10 @@
 
 const defaultState = {
-  user: {}
+  user: {
+    email: '',
+    displayName: '',
+    uid: ''
+  }
 }
 
 const USER_LOGGED_IN = 'USER_LOGGED_IN', USER_LOGGIN_REQUESTED = 'USER_LOGGIN_REQUESTED';
@@ -29,3 +33,5 @@ export default (state=defaultState, action={}) => {
     default: return state;
   }
 };
+
+export const getUser = state => state.user.email.length > 1 ? state : undefined;
