@@ -35,7 +35,7 @@ test('- FetchQuestionsAsync step 2', assert => {
     assert.end();
 });
 
-test('- step 3', assert => {
+test('- FetchQuestionsAsync step 3', assert => {
   const msg = 'should return an active listening take';
 
   const actual = generatorStep(fetchQuestionsAsync, 3).value;
@@ -45,38 +45,33 @@ test('- step 3', assert => {
   assert.end();
 });
 
-test('Call addQuestionToStorage Saga', nest => {
-  const generator = addQuestionToStorage();
+test('AddQuestionToStorage step 1 ', assert => {
+  const msg = 'should call addAskToUserStorage, add ask to DB';
 
-  nest.test(' - call addAskToUserStorage to post on DB ', assert => {
-    const msg = 'should call addAskToUserStorage, add ask to DB';
+  // once DB is connected, we'll connect to it and not from state
+  const actual = generatorStep(addQuestionToStorage, 1).value;
+  const expected = call(addAskToUserStorage, undefined);
 
-    // once DB is connected, we'll connect to it and not from state
-    const actual = generator.next().value;
-    const expected = call(addAskToUserStorage, undefined);
+  assert.same(actual, expected, msg);
+  assert.end();
+});
 
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
+test('- AddQuestionToStorage step 2', assert => {
+  const msg = 'should dispatch an ADDED_QUESTION action';
 
-  nest.test('- dispatches an addedQuestion action', assert => {
-    const msg = 'should dispatch an ADDED_QUESTION action';
+  const actual = generatorStep(addQuestionToStorage, 2).value;
+  const expected = put(addedQuestion());
 
-    const actual = generator.next().value;
-    const expected = put(addedQuestion());
+  assert.same(actual, expected, msg);
+  assert.end();
+});
 
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
+test('- AddQuestionToStorage is DONE. It returns true and undefined', assert => {
+  const msg = 'should return { done: true, value: undefined }';
 
-  nest.test('- generator is DONE. It returns true and undefined', assert => {
-    const msg = 'should return { done: true, value: undefined }';
+  const actual = generatorStep(addQuestionToStorage, 3);
+  const expected = { done: true, value: undefined };
 
-    const actual = generator.next();
-    const expected = { done: true, value: undefined };
-
-    assert.same(actual, expected, msg);
-    assert.end();
-  });
-
+  assert.same(actual, expected, msg);
+  assert.end();
 });
