@@ -5,7 +5,7 @@
   "main": "pages/index.js",
   "scripts": {
     "test": "babel-node app/index.test.js",
-    "test-f": "babel-node features/index.test.js | faucet",
+    "test-f": "babel-node app/index.test.js | faucet",
     "dev": "next",
     "build": "next build",
     "start": "next start",
