@@ -57,7 +57,11 @@ test('User Reducer', nest => {
     }
 
     const actual = getUser(fixture);
-    const expected = fixture;
+    const expected = {
+      email: 'yeibercano@gmail.com',
+      displayName: 'Yeiber Cano',
+      uid: '213123123123123'
+    }
 
     assert.same(actual, expected, msg);
     assert.end();
