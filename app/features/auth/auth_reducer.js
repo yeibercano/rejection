@@ -34,4 +34,4 @@ export default (state=defaultState, action={}) => {
   }
 };
 
-export const getUser = state => state.user.email.length > 1 ? state : undefined;
+export const getUser = state => state.user.email.length > 1 ? state.user : undefined;
