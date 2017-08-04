@@ -1,9 +1,19 @@
 import test from 'tape';
 import { put, call, takeEvery, select, take } from 'redux-saga/effects';
-import { selectQuestions, fetchedQuestions, addedQuestion, addQuestion } from './entries_reducer';
+import {
+  selectQuestions,
+  fetchedQuestions,
+  addedQuestion,
+  addQuestion
+} from './entries_reducer';
 
 // sagas and helpers/services for sagas
-import { addQuestionToStorage, fetchQuestionsAsync, addAskToUserStorage, updatedChannelAsks  } from './entries_sagas';
+import {
+  addQuestionToStorage,
+  fetchQuestionsAsync,
+  addAskToUserStorage,
+  updatedChannelAsks
+} from './entries_sagas';
 
 // idea to prevent .next() .next() .nex() calls
 const generatorStep = (generator, step, ...args) => {
@@ -26,13 +36,13 @@ test('FetchQuestionsAsync step 1', assert => {
 });
 
 test('- FetchQuestionsAsync step 2', assert => {
-    const msg = 'should dispatch a FETCHED_QUESTIONS action with entries ';
+  const msg = 'should dispatch a FETCHED_QUESTIONS action with entries ';
 
-    const actual = generatorStep(fetchQuestionsAsync, 2).value;
-    const expected = put(fetchedQuestions());
+  const actual = generatorStep(fetchQuestionsAsync, 2).value;
+  const expected = put(fetchedQuestions());
 
-    assert.same(actual, expected, msg);
-    assert.end();
+  assert.same(actual, expected, msg);
+  assert.end();
 });
 
 test('- FetchQuestionsAsync step 3', assert => {
