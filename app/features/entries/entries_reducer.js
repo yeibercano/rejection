@@ -9,7 +9,7 @@ const NOT_ANSWERED_TIME = 0;
 const DEFAULT_ID = 0;
 
 // action creators
-const addQuestion = (
+export const addQuestion = (
   {
     status = '',
     ask = '',
@@ -32,7 +32,7 @@ const addQuestion = (
 
 const defaultState = [];
 
-const reducer = (state = [], action = {}) => {
+export const asksReducer = (state = [], action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case ADD_QUESTION:
@@ -45,7 +45,7 @@ const reducer = (state = [], action = {}) => {
 // selectors
 export const getSlice = state => state.asksReducer;
 
-const getScore = state =>
+export const getScore = state =>
   getSlice(state).reduce(
     (accu, { status }) =>
       status === Accepted ? accu + 1 : status === Rejected ? accu + 10 : accu,
