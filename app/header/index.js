@@ -6,7 +6,6 @@ import CurrentUser from '../features/auth/currentUser';
 import { getUser } from '../features/auth/auth_reducer';
 
 class Header extends Component {
-
   render() {
     const { state } = this.props;
     const currentUser = getUser(state.userReducer);
@@ -16,14 +15,16 @@ class Header extends Component {
         <header className="centerContainer flexHorizontalBetween">
           <ul>
             <li>
-              <a className="brand" href="#">Rejection</a>
+              <a className="brand" href="#">
+                Rejection
+              </a>
             </li>
           </ul>
           {!currentUser && <Signin />}
-          {currentUser && <CurrentUser user={currentUser}/>}
+          {currentUser && <CurrentUser user={currentUser} />}
         </header>
       </div>
-    )
+    );
   }
 }
 
