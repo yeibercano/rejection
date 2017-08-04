@@ -1,19 +1,18 @@
 import React from 'react';
 import { store, loadState } from './utilities';
 import { Provider } from 'react-redux';
-import { database } from './storage/firebase';
-import Home from './home'
+import Home from './home';
 
 export default class Index extends React.Component {
   componentDidMount() {
-    loadState()
+    loadState();
   }
 
   render() {
     return (
       <Provider store={store}>
-        <Home/>
+        <Home />
       </Provider>
-    )
+    );
   }
 }
