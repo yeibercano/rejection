@@ -7,15 +7,18 @@ import { eventChannel } from 'redux-saga';
 const userAsks = 'users/userId/asks'
 export const addAskToUserStorage = ask => database.ref(userAsks).push(ask);
 const userAsksEventChannel = () => {
-  return eventChannel( emit => database.ref(userAsks).on('child_added', data => emit(data.val()) )  )
-}
+  return database.ref(userAsks).on('value', snapshot => {
+      console.log('snapshot', snapshot)
+      return snapshot.val()
+    });
+  }
 export const updatedChannelAsks = userAsksEventChannel();
 
 //worker/task saga addQuestionAsync
 export function* addQuestionToStorage({ payload } = {}) {
   try {
-    const recentlyAdded = yield call(addAskToUserStorage, payload);
-    yield put(addedQuestion());
+    yield put(addedQuestion(payload));
+    yield call(addAskToUserStorage, payload);
   } catch (e) {
     console.log(e);
   }
@@ -29,11 +32,8 @@ function* watchAddQuestion() {
 export function* fetchQuestionsAsync() {
   try {
 
-
-    while(true) {
       const lastAdded = yield take(updatedChannelAsks);
       yield put(fetchedQuestions(lastAdded));
-    }
 
   } catch (e) {
     console.log(e);

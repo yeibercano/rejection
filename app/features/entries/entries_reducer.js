@@ -1,8 +1,9 @@
 import cuid from 'cuid';
 
 // actions
-const ADD_QUESTION = 'ADD_QUESTION', FETCHED_QUESTIONS = 'FETCHED_QUESTIONS',
-LOAD_STATE = 'LOAD_STATE', ADDED_QUESTION  = 'ADDED_QUESTION';
+const ADD_QUESTION = 'ADD_QUESTION';
+const FETCHED_QUESTIONS = 'FETCHED_QUESTIONS';
+const LOAD_STATE = 'LOAD_STATE';
 
 // action creators
 export const addQuestion = ({
@@ -21,32 +22,25 @@ export const addQuestion = ({
     id
   }
 });
+
 export const fetchedQuestions = (ask = {}) => ({
   type: FETCHED_QUESTIONS,
   payload: ask
 });
-export const addedQuestion = () => ({ type: ADDED_QUESTION });
+
 export const loadState = () => ({ type: LOAD_STATE });
 
-const defaultState = {
-    asks: [
-      {
-        ask: '',
-        askee: '',
-        status: '',
-        timestamp: ''
-      }
-    ]
-};
+const defaultState = [];
 
 // reducer
 export default (state = defaultState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case FETCHED_QUESTIONS:
-    return {
-      ...state, asks: state.asks.concat([payload])
-    }
+      return state.concat(payload);
+    case ADD_QUESTION:
+      return state.concat([payload]);
+
     default: return state;
   }
 };
