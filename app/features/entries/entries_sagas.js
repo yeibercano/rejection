@@ -1,15 +1,14 @@
 import { put, call, takeEvery, select, take } from 'redux-saga/effects';
 import { addQuestion } from './entries_reducer';
 import { database } from '../../storage/firebase';
-import { loadState } from '../../utilities';
 import { eventChannel } from 'redux-saga';
 
 //declarative effects
 const userAsks = 'users/userId/asks';
 export const addAskToUserStorage = ask => database.ref(userAsks).push(ask);
+
 const userAsksEventChannel = () => {
   return database.ref(userAsks).on('value', snapshot => {
-    console.log('snapshot', snapshot);
     return snapshot.val();
   });
 };
