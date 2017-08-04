@@ -1,5 +1,5 @@
 import test from 'tape';
-import { put, call, takeEvery, take } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import { authUser, auth, googleAuthProvider } from '../../storage/firebase';
 
 // sagas and helpers/services for sagas
@@ -25,5 +25,4 @@ test('Signin User Saga', nest => {
     assert.same(actual, expected, msg);
     assert.end();
   });
-
 });
