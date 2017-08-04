@@ -1,5 +1,4 @@
 import cuid from 'cuid';
-import dux from 'autodux';
 
 const ADD_QUESTION = 'ADD_QUESTION';
 
