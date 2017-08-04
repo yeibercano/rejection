@@ -1,0 +1,24 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "plugins": ["prettier", "react", "import"],
+  "rules": {
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"]
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "blockBindings": true,
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  }
+}
