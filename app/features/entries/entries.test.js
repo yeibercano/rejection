@@ -6,13 +6,17 @@ import dom from 'cheerio';
 import Entries from './index.js';
 import entries, { accept, reject, getScore } from './entries_reducer.js';
 import { Provider } from 'react-redux';
-import { store } from '../../utilities'
+import { store } from '../../utilities';
 
 const render = reactDom.renderToStaticMarkup;
 
 test('Entries Component', nest => {
   nest.test('- inputs', assert => {
-    const el = <Provider store={store}><Entries /></Provider>;
+    const el = (
+      <Provider store={store}>
+        <Entries />
+      </Provider>
+    );
     const $ = dom.load(render(el));
 
     const msg = 'should render 4 input';
@@ -24,7 +28,11 @@ test('Entries Component', nest => {
   });
 
   nest.test('- title', assert => {
-    const el = <Provider store={store}><Entries /></Provider>;
+    const el = (
+      <Provider store={store}>
+        <Entries />
+      </Provider>
+    );
     const $ = dom.load(render(el));
     const title = 'Rejection';
 
@@ -37,7 +45,11 @@ test('Entries Component', nest => {
   });
 
   nest.test('- paragraph', assert => {
-    const el = <Provider store={store}><Entries /></Provider>;
+    const el = (
+      <Provider store={store}>
+        <Entries />
+      </Provider>
+    );
     const $ = dom.load(render(el));
 
     const msg = 'should render a paragraph with content';
@@ -49,5 +61,4 @@ test('Entries Component', nest => {
     assert.same(actual, expected, msg);
     assert.end();
   });
-
 });
