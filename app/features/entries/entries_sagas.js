@@ -32,7 +32,7 @@ function* watchAddQuestion() {
 export function* fetchQuestionsAsync() {
   try {
     const lastAdded = yield take(updatedChannelAsks);
-    yield put(fetchedQuestions(lastAdded));
+    yield put(addQuestion(lastAdded));
   } catch (e) {
     console.log(e);
   }
