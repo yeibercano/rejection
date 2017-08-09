@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint app && 'Lint complete.'",
-    "watch": "watch 'clear && npm run -s test && npm run -s lint' app"
+    "watch": "watch 'clear && npm run -s lint && npm run -s test' app"
   },
   "repository": {
     "type": "git",
