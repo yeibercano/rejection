@@ -1,7 +1,4 @@
-import React from 'react';
-import reactDom from 'react-dom/server';
 import test from 'tape';
-import dom from 'cheerio';
 import cuid from 'cuid';
 
 import {
