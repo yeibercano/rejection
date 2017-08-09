@@ -1,4 +1,4 @@
-import { put, call, takeEvery, take } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import { userLoggedIn, userLogginRequested } from './auth_reducer';
 import { authUser, auth, googleAuthProvider } from '../../storage/firebase';
 
@@ -20,7 +20,7 @@ export function* signInUserAsync() {
     yield call(setToken, user);
     yield put(userLoggedIn(user));
   } catch (e) {
-    console.log('error -->', e);
+    throw e;
   }
 }
 

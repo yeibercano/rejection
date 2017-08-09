@@ -1,7 +1,4 @@
-import React from 'react';
-import reactDom from 'react-dom/server';
 import test from 'tape';
-import dom from 'cheerio';
 import cuid from 'cuid';
 
 import userReducer, { userLoggedIn, getUser } from './auth_reducer';
@@ -11,14 +8,14 @@ const defaultState = {
     displayName: '',
     uid: ''
   }
-}
+};
 const loggedInUser = {
   uid: cuid(),
   email: 'example@gmail.com',
-  displayName:'example JS'
-}
+  displayName: 'example JS'
+};
 
-const expectedState = ( props={} ) => Object.assign({}, defaultState, props)
+const expectedState = (props = {}) => Object.assign({}, defaultState, props);
 
 test('User Reducer', nest => {
   nest.test('- default state', assert => {
@@ -54,17 +51,16 @@ test('User Reducer', nest => {
         displayName: 'Yeiber Cano',
         uid: '213123123123123'
       }
-    }
+    };
 
     const actual = getUser(fixture);
     const expected = {
       email: 'yeibercano@gmail.com',
       displayName: 'Yeiber Cano',
       uid: '213123123123123'
-    }
+    };
 
     assert.same(actual, expected, msg);
     assert.end();
   });
-
 });
