@@ -5,13 +5,17 @@ import dom from 'cheerio';
 
 import Main from './index.js';
 import { Provider } from 'react-redux';
-import { store } from '../utilities'
+import { store } from '../utilities';
 
 const render = reactDom.renderToStaticMarkup;
 
 test('Main component', assert => {
   const msg = 'should render an aside';
-  const el = <Provider store={store}><Main /></Provider>;
+  const el = (
+    <Provider store={store}>
+      <Main />
+    </Provider>
+  );
   const $ = dom.load(render(el));
 
   const actual = $('aside').length;
