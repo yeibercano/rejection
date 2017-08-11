@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Signin from '../features/auth/signin';
 import CurrentUser from '../features/auth/currentUser';
@@ -27,6 +28,10 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  state: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({ state });
 
