@@ -9,7 +9,7 @@ const render = reactDom.renderToStaticMarkup;
 
 test('Signin component', assert => {
   const msg = 'should render a button with a .signin class';
-  const el = <Signin />
+  const el = <Signin />;
   const $ = dom.load(render(el));
 
   const actual = $('.signin').length;
@@ -17,12 +17,11 @@ test('Signin component', assert => {
 
   assert.same(actual, expected, msg);
   assert.end();
-
 });
 
 test('Signin component text', assert => {
   const msg = 'should render Sign In text inside of .signin class';
-  const el = <Signin />
+  const el = <Signin />;
   const $ = dom.load(render(el));
 
   const actual = $('.signin').html();
