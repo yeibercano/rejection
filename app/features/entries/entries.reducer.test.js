@@ -1,13 +1,7 @@
 import test from 'tape';
 import cuid from 'cuid';
 
-import {
-  asksReducer,
-  addQuestion,
-  fetchedQuestions,
-  getScore,
-  selectQuestions
-} from './entries_reducer.js';
+import { asksReducer, addQuestion, getScore } from './entries_reducer.js';
 
 // default state
 const defaultState = [];

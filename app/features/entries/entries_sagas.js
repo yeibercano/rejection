@@ -1,4 +1,4 @@
-import { put, call, takeEvery, select, take } from 'redux-saga/effects';
+import { put, call, takeEvery, take } from 'redux-saga/effects';
 import { addQuestion } from './entries_reducer';
 import { database } from '../../storage/firebase';
 import { eventChannel } from 'redux-saga';
@@ -20,7 +20,7 @@ export function* addQuestionToStorage({ payload } = {}) {
     yield put(addedQuestion(payload));
     yield call(addAskToUserStorage, payload);
   } catch (e) {
-    console.log(e);
+    throw e;
   }
 }
 
@@ -34,7 +34,7 @@ export function* fetchQuestionsAsync() {
     const lastAdded = yield take(updatedChannelAsks);
     yield put(addQuestion(lastAdded));
   } catch (e) {
-    console.log(e);
+    throw e;
   }
 }
 //watcher saga - fetchedQuestionsAsync

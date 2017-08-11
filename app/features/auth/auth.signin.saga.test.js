@@ -1,5 +1,5 @@
 import test from 'tape';
-import { put, call, takeEvery } from 'redux-saga/effects';
+import { call } from 'redux-saga/effects';
 import { authUser, auth, googleAuthProvider } from '../../storage/firebase';
 
 // sagas and helpers/services for sagas
