@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Score = ({ score }) => {
   return (
@@ -16,6 +17,10 @@ const Score = ({ score }) => {
       </style>
     </aside>
   );
+};
+
+Score.propTypes = {
+  score: PropTypes.number.isRequired
 };
 
 export default Score;

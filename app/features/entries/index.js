@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addQuestion } from './entries_reducer.js';
 import { reduxForm, reset } from 'redux-form';
@@ -34,6 +35,12 @@ export class Entries extends Component {
     );
   }
 }
+
+Entries.propTypes = {
+  addQuestion: PropTypes.function.isRequired,
+  reset: PropTypes.function.isRequired,
+  handleSubmit: PropTypes.function.isRequired
+};
 
 const entryForm = reduxForm({ form: 'entry' })(Entries);
 

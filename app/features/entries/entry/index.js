@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
 export const Entry = ({ handleSubmit }) => {
@@ -55,6 +56,10 @@ export const Entry = ({ handleSubmit }) => {
       <button type="submit">Submit</button>
     </form>
   );
+};
+
+Entry.propTypes = {
+  handleSubmit: PropTypes.function.isRequired
 };
 
 export default Entry;
