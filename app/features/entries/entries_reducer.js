@@ -6,7 +6,6 @@ const Accepted = 'Accepted';
 const Rejected = 'Rejected';
 const Unanswered = 'Unanswered';
 const NOT_ANSWERED_TIME = 0;
-const DEFAULT_ID = 0;
 
 // action creators
 export const addQuestion = (
@@ -32,7 +31,7 @@ export const addQuestion = (
 
 const defaultState = [];
 
-export const asksReducer = (state = [], action = {}) => {
+export const asksReducer = (state = defaultState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case ADD_QUESTION:
@@ -48,6 +47,10 @@ export const getSlice = state => state.asksReducer;
 export const getScore = state =>
   getSlice(state).reduce(
     (accu, { status }) =>
-      status === Accepted ? accu + 1 : status === Rejected ? accu + 10 : accu,
+      status === Accepted
+        ? accu + 1
+        : status === Rejected
+          ? accu + 10
+          : status === Unanswered ? accu + 0 : accu,
     0
   );
