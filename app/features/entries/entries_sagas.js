@@ -1,7 +1,8 @@
 import { put, call, takeEvery, take } from 'redux-saga/effects';
 import { addQuestion } from './entries_reducer';
 import { database } from '../../storage/firebase';
-import { eventChannel } from 'redux-saga';
+
+const log = console.log.bind(console); // eslint-disable-line
 
 //declarative effects
 const userAsks = 'users/userId/asks';
@@ -17,10 +18,9 @@ export const updatedChannelAsks = userAsksEventChannel();
 //worker/task saga addQuestionAsync
 export function* addQuestionToStorage({ payload } = {}) {
   try {
-    yield put(addedQuestion(payload));
     yield call(addAskToUserStorage, payload);
   } catch (e) {
-    throw e;
+    yield call(log, e);
   }
 }
 
