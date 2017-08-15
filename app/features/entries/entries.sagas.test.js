@@ -1,11 +1,6 @@
 import test from 'tape';
-import { put, call, takeEvery, select, take } from 'redux-saga/effects';
-import {
-  selectQuestions,
-  fetchedQuestions,
-  addedQuestion,
-  addQuestion
-} from './entries_reducer';
+import { put, call, take } from 'redux-saga/effects';
+import { addQuestion } from './entries_reducer';
 
 // sagas and helpers/services for sagas
 import {
@@ -49,33 +44,33 @@ test('- FetchQuestionsAsync step 2', assert => {
   assert.end();
 });
 
-// test('AddQuestionToStorage step 1 ', assert => {
-//   const msg = 'should call addAskToUserStorage, add ask to DB';
-//
-//   // once DB is connected, we'll connect to it and not from state
-//   const actual = generatorStep(addQuestionToStorage, 1).value;
-//   const expected = call(addAskToUserStorage, undefined);
-//
-//   assert.same(actual, expected, msg);
-//   assert.end();
-// });
-//
-// test('- AddQuestionToStorage step 2', assert => {
-//   const msg = 'should dispatch an ADDED_QUESTION action';
-//
-//   const actual = generatorStep(addQuestionToStorage, 2).value;
-//   const expected = put(addedQuestion());
-//
-//   assert.same(actual, expected, msg);
-//   assert.end();
-// });
-//
-// test('- AddQuestionToStorage is DONE. It returns true and undefined', assert => {
-//   const msg = 'should return { done: true, value: undefined }';
-//
-//   const actual = generatorStep(addQuestionToStorage, 3);
-//   const expected = { done: true, value: undefined };
-//
-//   assert.same(actual, expected, msg);
-//   assert.end();
-// });
+test('AddQuestionToStorage step 1 ', assert => {
+  const msg = 'should call addAskToUserStorage, add ask to DB';
+
+  // once DB is connected, we'll connect to it and not from state
+  const actual = generatorStep(addQuestionToStorage, 1).value;
+  const expected = call(addAskToUserStorage, undefined);
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('- AddQuestionToStorage step 2', assert => {
+  const msg = 'should dispatch an ADDED_QUESTION action';
+
+  const actual = generatorStep(addQuestionToStorage, 2).value;
+  const expected = put(addQuestion());
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
+
+test('- AddQuestionToStorage is DONE. It returns true and undefined', assert => {
+  const msg = 'should return { done: true, value: undefined }';
+
+  const actual = generatorStep(addQuestionToStorage, 3);
+  const expected = { done: true, value: undefined };
+
+  assert.same(actual, expected, msg);
+  assert.end();
+});
