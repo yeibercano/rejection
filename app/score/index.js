@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Score = ({ score }) => {
+export const Score = ({ score }) => {
   return (
     <aside>
       <h1>Score</h1>
@@ -22,5 +22,3 @@ const Score = ({ score }) => {
 Score.propTypes = {
   score: PropTypes.number.isRequired
 };
-
-export default Score;
