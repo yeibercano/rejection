@@ -37,9 +37,9 @@ export class Entries extends Component {
 }
 
 Entries.propTypes = {
-  addQuestion: PropTypes.function.isRequired,
-  reset: PropTypes.function.isRequired,
-  handleSubmit: PropTypes.function.isRequired
+  addQuestion: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 const entryForm = reduxForm({ form: 'entry' })(Entries);
