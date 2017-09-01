@@ -59,7 +59,7 @@ export const Entry = ({ handleSubmit }) => {
 };
 
 Entry.propTypes = {
-  handleSubmit: PropTypes.function.isRequired
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default Entry;
