@@ -3,7 +3,7 @@ import reactDom from 'react-dom/server';
 import test from 'tape';
 import dom from 'cheerio';
 
-import Footer from './index.js';
+import { Footer } from './index.js';
 
 const render = reactDom.renderToStaticMarkup;
 
