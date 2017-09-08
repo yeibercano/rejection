@@ -5,9 +5,7 @@ export const Score = ({ score }) => {
   return (
     <aside>
       <h1>Score</h1>
-      <p className="score">
-        {score}
-      </p>
+      <p className="score">{score}</p>
       <style jsx>
         {`
           aside {

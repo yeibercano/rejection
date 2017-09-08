@@ -1,13 +1,7 @@
 import React from 'react';
-import Footer from '../footer';
-import Header from '../header';
-import Main from '../main';
 
-export const Home = () =>
+export const Home = () => (
   <div className="appContainer">
-    <Header />
-    <Main />
-    <Footer />
     <style jsx>
       {`
         .appContainer {
@@ -37,4 +31,5 @@ export const Home = () =>
         }
       `}
     </style>
-  </div>;
+  </div>
+);

@@ -12,9 +12,7 @@ export const Footer = () => {
               github
             </a>
           </span>
-          <span>
-            {' '}| {date}
-          </span>
+          <span> |{date}</span>
         </p>
       </footer>
     </div>

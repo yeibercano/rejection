@@ -6,14 +6,10 @@ export const CurrentUser = ({ user = {} }) => {
     <aside className="currentUser">
       <ul>
         <li>
-          <div>
-            {user.displayName || 'anonymous'}
-          </div>
+          <div>{user.displayName || 'anonymous'}</div>
         </li>
         <li>
-          <div>
-            {user.email}
-          </div>
+          <div>{user.email}</div>
         </li>
         <li>
           <div>
