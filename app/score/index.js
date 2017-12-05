@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Score = ({ score }) => {
+export const Score = ({ score } = {}) => {
   return (
     <aside>
       <h1>Score</h1>

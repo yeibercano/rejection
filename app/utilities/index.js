@@ -17,3 +17,5 @@ const USER_LOGGIN_REQUESTED = 'USER_LOGGIN_REQUESTED';
 export const loadState = () => store.dispatch({ type: LOAD_STATE });
 export const userLogginRequested = () =>
   store.dispatch({ type: USER_LOGGIN_REQUESTED });
+
+const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
