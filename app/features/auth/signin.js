@@ -1,7 +1,7 @@
 import React from 'react';
 import { userLogginRequested } from '../../utilities/';
 
-export const Signin = () => {
+const Signin = () => {
   return (
     <aside className="signinComponent">
       <button className="signin" onClick={() => userLogginRequested()}>
@@ -17,3 +17,5 @@ export const Signin = () => {
     </aside>
   );
 };
+
+export default Signin;
