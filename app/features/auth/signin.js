@@ -1,8 +1,7 @@
 import React from 'react';
-import { authUser, auth, googleAuthProvider } from '../../storage/firebase';
 import { userLogginRequested } from '../../utilities/';
 
-const Signin = () => {
+export const Signin = () => {
   return (
     <aside className="signinComponent">
       <button className="signin" onClick={() => userLogginRequested()}>
@@ -18,5 +17,3 @@ const Signin = () => {
     </aside>
   );
 };
-
-export default Signin;
