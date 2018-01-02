@@ -1,17 +1,24 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Score = ({score}) => {
+export const Score = ({ score }) => {
   return (
-      <aside>
-          <h1>Score</h1>
-          <p className="score">{score}</p>
-          <style jsx >{`
-            aside {
-              width: 25%;
-            }
-          `}
-          </style>
-      </aside>
-    );
-}
+    <aside>
+      <h1>Score</h1>
+      <p className="score">
+        {score}
+      </p>
+      <style jsx>
+        {`
+          aside {
+            width: 25%;
+          }
+        `}
+      </style>
+    </aside>
+  );
+};
 
-export default Score
+Score.propTypes = {
+  score: PropTypes.number.isRequired
+};
