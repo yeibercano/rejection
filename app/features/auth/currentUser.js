@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const CurrentUser = ({ user = {} }) => {
+export const CurrentUser = ({ user = {} }) => {
   return (
     <aside className="currentUser">
       <ul>
@@ -27,4 +28,6 @@ const CurrentUser = ({ user = {} }) => {
   );
 };
 
-export default CurrentUser;
+CurrentUser.propTypes = {
+  user: PropTypes.object.isRequired
+};
