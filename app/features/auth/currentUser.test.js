@@ -9,7 +9,7 @@ const render = reactDom.renderToStaticMarkup;
 
 test('CurrentUser component - ul', assert => {
   const msg = 'should render ul element';
-  const el = <CurrentUser />
+  const el = <CurrentUser />;
 
   const $ = dom.load(render(el));
 
@@ -18,12 +18,11 @@ test('CurrentUser component - ul', assert => {
 
   assert.same(actual, expected, msg);
   assert.end();
-
 });
 
 test('CurrentUser component - .currentUser', assert => {
   const msg = 'should render aside .currentUser element';
-  const el = <CurrentUser />
+  const el = <CurrentUser />;
   const $ = dom.load(render(el));
 
   const actual = $('aside.currentUser').length;
@@ -31,5 +30,4 @@ test('CurrentUser component - .currentUser', assert => {
 
   assert.same(actual, expected, msg);
   assert.end();
-
 });
