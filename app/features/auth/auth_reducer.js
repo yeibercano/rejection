@@ -27,10 +27,10 @@ export default (state = defaultState, action = {}) => {
     case USER_LOGGED_IN:
       return {
         ...state,
-        user: payload
-      };
-    default:
-      return state;
+      user: payload
+    };
+  default:
+    return state;
   }
 };
 
